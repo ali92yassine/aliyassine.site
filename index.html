@@ -9,38 +9,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
-    <!-- Cal.com embed loader -->
-    <script>
-      (function (C, A, L) {
-        let p = function (a, ar) { a.q.push(ar); };
-        let d = C.document;
-        C.Cal = C.Cal || function () {
-          let cal = C.Cal;
-          let ar = arguments;
-          if (!cal.loaded) {
-            cal.ns = {};
-            cal.q = cal.q || [];
-            d.head.appendChild(d.createElement("script")).src = A;
-            cal.loaded = true;
-          }
-          if (ar[0] === L) {
-            const api = function () { p(api, arguments); };
-            const namespace = ar[1];
-            api.q = api.q || [];
-            if (typeof namespace === "string") {
-              cal.ns[namespace] = cal.ns[namespace] || api;
-              p(cal.ns[namespace], ar);
-              p(cal, ["initNamespace", namespace]);
-            } else {
-              p(cal, ar);
-            }
-            return;
-          }
-          p(cal, ar);
-        };
-      })(window, "https://app.cal.com/embed/embed.js", "init");
+    <!-- Cal.com embed -->
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 
-      Cal("init", { origin: "https://app.cal.com" });
+      Cal("init", "psychotherapy-session-gr", {origin:"https://app.cal.com"});
+      Cal("init", "free-15-min-intro-session-gr", {origin:"https://app.cal.com"});
+      Cal("init", "psychotherapy-session-en", {origin:"https://app.cal.com"});
+      Cal("init", "free-15-min-intro-session", {origin:"https://app.cal.com"});
+
+      Cal.config = Cal.config || {};
+      Cal.config.forwardQueryParams = true;
+
+      Cal.ns["psychotherapy-session-gr"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+      Cal.ns["free-15-min-intro-session-gr"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+      Cal.ns["psychotherapy-session-en"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+      Cal.ns["free-15-min-intro-session"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
     </script>
 
     <style>
@@ -999,11 +983,8 @@
 
             const bookingModal = document.getElementById('bookingModal');
             const bookingModalClose = document.getElementById('bookingModalClose');
-            const bookingEmbedWrapper = document.getElementById('bookingEmbedWrapper');
             const freeIntroBtn = document.getElementById('freeIntroBtn');
             const regularSessionBtn = document.getElementById('regularSessionBtn');
-
-            let currentEvent = 'free-intro';
 
             function setActiveButton(eventType) {
                 document.querySelectorAll('.booking-option-minimal').forEach(btn => {
@@ -1012,21 +993,18 @@
             }
 
             function openBookingModal(eventType) {
-                currentEvent = eventType || 'free-intro';
-                setActiveButton(currentEvent);
+                setActiveButton(eventType);
                 bookingModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
-                bookingEmbedWrapper.innerHTML = '';
-                loadCalEmbed(currentEvent);
             }
 
             function closeBookingModal() {
                 bookingModal.classList.remove('active');
                 document.body.style.overflow = '';
-                bookingEmbedWrapper.innerHTML = '';
             }
 
-            function loadCalEmbed(eventType) {
+            // Direct open of Cal.com modal (no intermediate step)
+            function bookSession(eventType) {
                 const isEnglish = document.documentElement.lang === 'en';
                 let slug;
 
@@ -1036,18 +1014,17 @@
                     slug = isEnglish ? 'psychotherapy-session-en' : 'psychotherapy-session-gr';
                 }
 
-                const calLink = CAL_USERNAME + '/' + slug;
-                const containerId = 'cal-inline-' + eventType + '-' + Date.now();
+                // Close our modal if it's open
+                closeBookingModal();
 
-                bookingEmbedWrapper.innerHTML = '<div id="' + containerId + '" class="cal-inline"></div>';
-
-                window.Cal("inline", {
-                    elementOrSelector: '#' + containerId,
-                    calLink: calLink,
+                // Open Cal.com popup
+                window.Cal.ns[slug]("modal", {
+                    calLink: CAL_USERNAME + '/' + slug,
                     config: { layout: "month_view" }
                 });
             }
 
+            // All "Κλείσε συνεδρία" buttons → open the modal with two choices
             document.querySelectorAll('.book-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1060,14 +1037,15 @@
                 openBookingModal('free-intro');
             });
 
+            // The two choices → open Cal.com directly
             freeIntroBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                openBookingModal('free-intro');
+                bookSession('free-intro');
             });
 
             regularSessionBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                openBookingModal('regular-session');
+                bookSession('regular-session');
             });
 
             bookingModalClose.addEventListener('click', closeBookingModal);
