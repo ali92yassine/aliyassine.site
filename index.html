@@ -9,6 +9,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
+    <!-- Cal.com embed loader -->
+    <script>
+      (function (C, A, L) {
+        let p = function (a, ar) { a.q.push(ar); };
+        let d = C.document;
+        C.Cal = C.Cal || function () {
+          let cal = C.Cal;
+          let ar = arguments;
+          if (!cal.loaded) {
+            cal.ns = {};
+            cal.q = cal.q || [];
+            d.head.appendChild(d.createElement("script")).src = A;
+            cal.loaded = true;
+          }
+          if (ar[0] === L) {
+            const api = function () { p(api, arguments); };
+            const namespace = ar[1];
+            api.q = api.q || [];
+            if (typeof namespace === "string") {
+              cal.ns[namespace] = cal.ns[namespace] || api;
+              p(cal.ns[namespace], ar);
+              p(cal, ["initNamespace", namespace]);
+            } else {
+              p(cal, ar);
+            }
+            return;
+          }
+          p(cal, ar);
+        };
+      })(window, "https://app.cal.com/embed/embed.js", "init");
+
+      Cal("init", { origin: "https://app.cal.com" });
+    </script>
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -305,16 +339,15 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
-        /* ΕΙΣΑΓΩΓΗ ΠΡΟΣΕΓΓΙΣΕΩΝ — ΑΡΙΣΤΕΡΗ ΣΤΟΙΧΙΣΗ */
-           .approaches-intro {
-    max-width: 780px;
-    margin: 0 auto 60px;
-    text-align: justify;
-    text-justify: inter-word;
-    font-size: 1.05rem;
-    line-height: 1.9;
-    color: #1F3A5F;
-}
+        .approaches-intro {
+            max-width: 780px;
+            margin: 0 auto 60px;
+            text-align: justify;
+            text-justify: inter-word;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #1F3A5F;
+        }
 
         .approach-article {
             max-width: 100%; margin: 0; padding: 36px 0;
@@ -485,16 +518,6 @@
             .btn-primary { padding: 10px 22px; font-size: 0.85rem; }
         }
     </style>
-       <script>
-  window.Cal = window.Cal || function () {
-    (window.Cal.q = window.Cal.q || []).push(arguments);
-  };
-  window.Cal.loaded = true;
-</script>
-<script async src="https://app.cal.com/embed/embed.js"></script>
-<script>
-  Cal("init", { origin: "https://app.cal.com" });
-</script>
 </head>
 <body>
 
@@ -889,9 +912,7 @@
         (function() {
             "use strict";
 
-           const CAL_USERNAME = 'aliyassine';
-            const FREE_INTRO_SLUG = 'free-15-min-intro-session-gr';
-            const REGULAR_SESSION_SLUG = 'psychotherapy-session-gr';
+            const CAL_USERNAME = 'aliyassine';
 
             const langEl = document.getElementById('lang-el');
             const langEn = document.getElementById('lang-en');
@@ -1005,20 +1026,27 @@
                 bookingEmbedWrapper.innerHTML = '';
             }
 
-           function loadCalEmbed(eventType) {
-    const isFree = eventType === 'free-intro';
-    const slug = isFree ? FREE_INTRO_SLUG : REGULAR_SESSION_SLUG;
-    const calLink = CAL_USERNAME + '/' + slug;
+            function loadCalEmbed(eventType) {
+                const isEnglish = document.documentElement.lang === 'en';
+                let slug;
 
-    const containerId = 'cal-inline-' + eventType;
-    bookingEmbedWrapper.innerHTML = '<div id="' + containerId + '" class="cal-inline"></div>';
+                if (eventType === 'free-intro') {
+                    slug = isEnglish ? 'free-15-min-intro-session' : 'free-15-min-intro-session-gr';
+                } else {
+                    slug = isEnglish ? 'psychotherapy-session-en' : 'psychotherapy-session-gr';
+                }
 
-    window.Cal("inline", {
-        elementOrSelector: '#' + containerId,
-        calLink: calLink,
-        config: { layout: "month_view" }
-    });
-}
+                const calLink = CAL_USERNAME + '/' + slug;
+                const containerId = 'cal-inline-' + eventType + '-' + Date.now();
+
+                bookingEmbedWrapper.innerHTML = '<div id="' + containerId + '" class="cal-inline"></div>';
+
+                window.Cal("inline", {
+                    elementOrSelector: '#' + containerId,
+                    calLink: calLink,
+                    config: { layout: "month_view" }
+                });
+            }
 
             document.querySelectorAll('.book-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
