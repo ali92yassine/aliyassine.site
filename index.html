@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Αλί Γιασίν, MSc | Κλινικός Ψυχολόγος</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background-color: #F9F5F0;
+            color: #1F3A5F;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 950px; margin: 0 auto; padding: 0 28px; }
+
+        /* HEADER */
+        header {
+            padding: 18px 28px;
+            background: rgba(249, 245, 240, 0.92);
+            backdrop-filter: blur(12px);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            border-bottom: 1px solid rgba(31, 58, 95, 0.12);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .menu-toggle {
+            background: none; border: none; cursor: pointer; padding: 4px;
+            display: flex; flex-direction: column; gap: 5px; transition: all 0.3s ease;
+        }
+        .menu-toggle span {
+            display: block; width: 22px; height: 1.5px; background: #1F3A5F;
+            border-radius: 2px; transition: all 0.3s ease; transform-origin: center;
+        }
+        .menu-toggle:hover span { background: #7B8D7C; }
+        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+        .header-right { display: flex; align-items: center; gap: 12px; }
+        .lang-switch { display: flex; align-items: center; gap: 4px; font-size: 0.7rem; letter-spacing: 0.5px; font-family: 'Lora', serif; }
+        .lang-btn {
+            background: none; border: none; padding: 2px 6px; cursor: pointer; font-size: 0.7rem;
+            font-weight: 400; color: #8A7D75; border-radius: 4px; transition: all 0.25s ease;
+            font-family: inherit; text-transform: uppercase;
+        }
+        .lang-btn:hover { color: #1F3A5F; }
+        .lang-btn.active { color: #1F3A5F; font-weight: 500; }
+        .lang-divider { color: #DCD0C4; font-weight: 300; }
+        .btn-header-book {
+            background: #7B8D7C; color: #fff; padding: 8px 20px; border-radius: 40px;
+            text-decoration: none; font-size: 0.75rem; font-weight: 500; transition: all 0.3s ease;
+            font-family: 'Lora', serif; border: none; cursor: pointer; text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-header-book:hover { background: #5E6E5F; transform: translateY(-2px); }
+
+        /* MENU */
+        .menu-dropdown {
+            position: fixed; top: 72px; left: 28px;
+            background: rgba(255, 253, 251, 0.96); backdrop-filter: blur(16px);
+            border-radius: 16px; padding: 12px 8px; min-width: 200px;
+            box-shadow: 0 12px 48px rgba(31, 58, 95, 0.10);
+            border: 1px solid rgba(31, 58, 95, 0.15);
+            opacity: 0; visibility: hidden; transform: translateY(-8px) scale(0.96);
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 999; display: flex; flex-direction: column; gap: 2px;
+        }
+        .menu-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .menu-dropdown a {
+            text-decoration: none; color: #1F3A5F; font-size: 0.95rem; font-weight: 400;
+            padding: 8px 16px; border-radius: 10px; transition: all 0.2s ease;
+            font-family: 'Lora', serif;
+        }
+        .menu-dropdown a:hover { background: #EDE4DA; color: #7B8D7C; }
+        .menu-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 998; background: transparent; display: none;
+        }
+        .menu-overlay.active { display: block; }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 100px 28px 60px;
+            background: linear-gradient(165deg, #F9F5F0 0%, #F2EBE3 100%);
+            position: relative; overflow: hidden;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 680px; }
+        .hero-name { font-size: 4rem; font-weight: 600; line-height: 1.1; margin-bottom: 2px; letter-spacing: -0.5px; color: #1F3A5F; }
+        .hero-name strong { font-weight: 700; color: #1F3A5F; }
+        .hero-title { font-size: 1.2rem; color: #1F3A5F; font-weight: 400; font-style: italic; margin-bottom: 16px; }
+        .hero-tagline { font-size: 1.3rem; color: #1F3A5F; max-width: 500px; margin: 0 auto 24px; line-height: 1.6; font-weight: 400; }
+        .hero-tagline .highlight { color: #1F3A5F; font-weight: 500; display: inline-block; }
+        .hero-location { font-size: 0.9rem; color: #1F3A5F; opacity: 0.75; margin-bottom: 28px; font-style: italic; }
+        .hero-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+        .btn-primary {
+            background: #7B8D7C; color: #fff; padding: 14px 44px; border-radius: 60px;
+            text-decoration: none; font-weight: 500; transition: all 0.3s ease;
+            box-shadow: 0 4px 24px rgba(123, 141, 124, 0.25);
+            font-family: 'Lora', serif; font-size: 1.05rem; border: none; cursor: pointer;
+        }
+        .btn-primary:hover { background: #5E6E5F; transform: translateY(-3px); box-shadow: 0 8px 32px rgba(123, 141, 124, 0.35); }
+        .btn-secondary {
+            color: #1F3A5F; text-decoration: none; font-weight: 400;
+            border-bottom: 2px solid #1F3A5F; padding-bottom: 3px;
+            transition: all 0.2s ease; font-family: 'Lora', serif; font-size: 1.05rem;
+        }
+        .btn-secondary:hover { border-bottom-color: #7B8D7C; color: #7B8D7C; }
+
+        /* SECTIONS */
+        section { padding: 90px 0; border-top: 1px solid #EDE4DA; }
+        .section-title {
+            font-size: 2.2rem; font-weight: 600; text-align: left;
+            margin-bottom: 44px; letter-spacing: -0.3px; color: #1F3A5F;
+        }
+        .contact .section-title { text-align: center; margin-bottom: 50px; }
+        .contact .section-title::after {
+            content: ''; display: block; width: 50px; height: 2px;
+            background: #1F3A5F; margin: 16px auto 0; border-radius: 2px;
+        }
+
+        /* BIO */
+        .about { background: #FDFBF9; }
+        .bio-box {
+            background: #FFFFFF;
+            border: 1px solid rgba(31, 58, 95, 0.10);
+            border-radius: 20px;
+            padding: 48px 52px;
+            box-shadow: 0 8px 40px rgba(31, 58, 95, 0.05), 0 1px 3px rgba(31, 58, 95, 0.04);
+            position: relative;
+        }
+        .bio-box::before {
+            content: '';
+            position: absolute;
+            top: 20px; left: 20px; right: 20px; bottom: 20px;
+            border: 1px solid rgba(123, 141, 124, 0.18);
+            border-radius: 12px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .about-content {
+            display: block;
+            max-width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        .about-photo-wrapper {
+            float: left;
+            margin-right: 44px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            shape-outside: circle(50%);
+        }
+        .about-photo {
+            width: 300px; height: 300px; border-radius: 50%; overflow: hidden;
+            box-shadow: 0 12px 48px rgba(31, 58, 95, 0.12);
+            border: 3px solid #FFFFFF;
+            outline: 1px solid rgba(123, 141, 124, 0.25);
+            outline-offset: 6px;
+        }
+        .about-photo img {
+            width: 100%; height: 100%; object-fit: cover; transition: all 0.5s ease;
+            filter: sepia(0.12) saturate(1.08) contrast(1.02) brightness(1.06) hue-rotate(-4deg);
+        }
+        .about-photo img:hover { transform: scale(1.04); }
+
+        .about-text {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+        .about-text p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            color: #1F3A5F;
+            font-weight: 400;
+            line-height: 1.9;
+        }
+        .about-text p:last-child { margin-bottom: 0; }
+
+        .bio-divider {
+            display: block; width: 60px; height: 1px;
+            margin: 26px auto;
+            background: linear-gradient(to right, transparent, rgba(123, 141, 124, 0.5), transparent);
+            position: relative;
+        }
+        .bio-divider::after {
+            content: '◆';
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.5rem; color: rgba(123, 141, 124, 0.7);
+            background: #FFFFFF;
+            padding: 0 6px;
+            line-height: 1;
+        }
+
+        /* CREDENTIALS */
+        .credentials-section { background: #FDFBF9; padding-top: 0; border-top: none; }
+        .credential-box {
+            background: linear-gradient(160deg, #16304F 0%, #1F3A5F 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 18px; padding: 36px 40px;
+            transition: box-shadow 0.4s ease, transform 0.4s ease;
+            box-shadow: 0 8px 40px rgba(22, 48, 79, 0.20);
+            color: #F9F5F0;
+            position: relative;
+        }
+        .credential-box::before {
+            content: '';
+            position: absolute; top: 14px; left: 14px; right: 14px; bottom: 14px;
+            border: 1px solid rgba(220, 208, 196, 0.15);
+            border-radius: 10px;
+            pointer-events: none;
+        }
+        .credential-box:hover {
+            box-shadow: 0 16px 56px rgba(22, 48, 79, 0.35);
+            transform: translateY(-3px);
+        }
+        .credential-box-title {
+            font-size: 1.15rem; font-weight: 600; color: #FFFFFF;
+            margin-bottom: 22px; padding-bottom: 14px;
+            border-bottom: 1px solid rgba(220, 208, 196, 0.25);
+            letter-spacing: 0.3px; text-align: left;
+            position: relative;
+        }
+        .credential-list { list-style: none; padding: 0; margin: 0; position: relative; }
+        .credential-list li {
+            position: relative; padding-left: 22px; margin-bottom: 16px;
+            font-size: 1rem; color: #F9F5F0; line-height: 1.85; text-align: left;
+        }
+        .credential-list li:last-child { margin-bottom: 0; }
+        .credential-list li::before {
+            content: ''; position: absolute; left: 0; top: 0.8em;
+            width: 6px; height: 6px; background: #DCD0C4; border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(220, 208, 196, 0.12);
+        }
+
+        /* ARTICLE LINK */
+        .article-link-section { text-align: left; padding: 60px 0 0; background: #FDFBF9; }
+        .article-link {
+            display: inline-block; font-size: 1.4rem; font-style: italic; color: #1F3A5F;
+            text-decoration: none; border-bottom: 1px solid transparent;
+            transition: all 0.3s ease; letter-spacing: 0.2px; font-weight: 400;
+        }
+        .article-link:hover { border-bottom-color: #7B8D7C; color: #7B8D7C; }
+        .article-link::after { content: ' →'; font-style: normal; transition: margin-left 0.3s ease; }
+        .article-link:hover::after { margin-left: 6px; }
+
+        /* SERVICES */
+        .services { background: #F9F5F0; }
+        .services-list { max-width: 100%; margin: 0; }
+        .service-item {
+            padding: 32px 0; border-bottom: 1px solid #DCD0C4;
+            display: flex; align-items: baseline; gap: 32px;
+            opacity: 0; transform: translateY(16px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .service-item.visible { opacity: 1; transform: translateY(0); }
+        .service-item:first-child { border-top: 1px solid #DCD0C4; }
+        .service-number {
+            font-family: 'Lora', serif; font-size: 0.85rem; font-weight: 500;
+            color: #1F3A5F; opacity: 0.45; letter-spacing: 1px;
+            flex: 0 0 auto; min-width: 32px;
+        }
+        .service-content { flex: 1; }
+        .service-content h3 {
+            font-weight: 600; font-size: 1.2rem; margin-bottom: 8px;
+            color: #1F3A5F; letter-spacing: -0.1px; line-height: 1.4; text-align: left;
+        }
+        .service-content p {
+            font-size: 0.98rem; color: #1F3A5F; opacity: 0.82;
+            line-height: 1.8; font-weight: 400; text-align: left;
+        }
+
+        /* APPROACHES */
+        .approaches { background: #F6F0EA; }
+
+        .amorgos-wrapper {
+            position: relative; max-width: 900px; margin: 0 auto 50px;
+        }
+        .amorgos-image {
+            width: 100%; height: 520px;
+            background-image: url('amorgos.jpg');
+            background-size: cover; background-position: center;
+            border-radius: 6px; border: 8px solid #FFFFFF;
+            box-shadow: 0 20px 60px rgba(31, 58, 95, 0.20), 0 4px 12px rgba(31, 58, 95, 0.10);
+            filter: sepia(0.35) saturate(1.15) contrast(0.95) brightness(1.05) hue-rotate(-8deg);
+            transition: transform 0.8s ease;
+        }
+        .amorgos-image:hover { transform: scale(1.008); }
+        .amorgos-caption {
+            display: block; margin-top: 12px; font-size: 0.75rem;
+            font-style: italic; color: #1F3A5F; opacity: 0.6;
+            letter-spacing: 0.4px;
+            text-align: right;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* ΕΙΣΑΓΩΓΗ ΠΡΟΣΕΓΓΙΣΕΩΝ — ΑΡΙΣΤΕΡΗ ΣΤΟΙΧΙΣΗ */
+           .approaches-intro {
+    max-width: 780px;
+    margin: 0 auto 60px;
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #1F3A5F;
+}
+
+        .approach-article {
+            max-width: 100%; margin: 0; padding: 36px 0;
+            border-bottom: 1px solid #E8DFD6;
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+        .approach-article.visible { opacity: 1; transform: translateY(0); }
+        .approach-article:last-child { border-bottom: none; padding-bottom: 0; }
+        .approach-article:nth-child(even) {
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.35), transparent);
+            padding-left: 24px; padding-right: 24px; border-radius: 12px;
+        }
+        .approach-article h3 {
+            font-size: 1.35rem; font-weight: 600; color: #1F3A5F;
+            margin-bottom: 18px; letter-spacing: 0.2px; text-align: left;
+        }
+        .approach-article p {
+            font-size: 1.02rem; line-height: 1.95; color: #1F3A5F;
+            font-weight: 400; text-align: justify; text-justify: inter-word;
+        }
+        .approach-article p::first-letter {
+            font-size: 3.1rem; font-weight: 700; float: left;
+            line-height: 0.9; margin: 6px 10px 0 0;
+            color: #1F3A5F; font-family: 'Lora', serif;
+        }
+
+        /* CONTACT */
+        .contact {
+            background: #F6F0EA; text-align: center;
+            border-top: none; padding: 90px 0 100px;
+        }
+        .contact-simple { text-align: center; padding: 20px 0; }
+        .contact-simple p { font-size: 1.1rem; color: #1F3A5F; margin-bottom: 12px; }
+        .contact-simple a {
+            color: #1F3A5F; text-decoration: none;
+            border-bottom: 1px solid #DCD0C4; transition: all 0.2s;
+        }
+        .contact-simple a:hover { border-bottom-color: #7B8D7C; color: #7B8D7C; }
+        .btn-large { font-size: 1.1rem; padding: 16px 52px; }
+
+        /* MODAL */
+        .booking-modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(31, 58, 95, 0.5); z-index: 2000;
+            display: none; justify-content: center; align-items: center; padding: 20px;
+        }
+        .booking-modal-overlay.active { display: flex; }
+        .booking-modal {
+            background: #F7F2EC; border-radius: 20px; max-width: 600px; width: 100%;
+            max-height: 90vh; overflow-y: auto; padding: 40px 36px 32px;
+            position: relative; box-shadow: 0 30px 80px rgba(31, 58, 95, 0.30);
+        }
+        .booking-modal-close {
+            position: absolute; top: 14px; right: 18px; background: none; border: none;
+            font-size: 1.8rem; cursor: pointer; color: #1F3A5F; opacity: 0.6;
+            transition: opacity 0.2s; line-height: 1; font-weight: 300;
+        }
+        .booking-modal-close:hover { opacity: 1; }
+        .booking-modal-title {
+            font-weight: 500; font-size: 1.3rem; text-align: center;
+            color: #1F3A5F; margin-bottom: 4px; letter-spacing: -0.3px;
+        }
+        .booking-modal-subtitle {
+            text-align: center; color: #1F3A5F; opacity: 0.65;
+            font-size: 0.9rem; margin-bottom: 28px; font-style: italic;
+        }
+        .booking-options-vertical { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+        .booking-option-minimal {
+            background: #FFFFFF; border: 1.5px solid #1F3A5F; border-radius: 40px;
+            padding: 12px 28px; cursor: pointer; transition: all 0.3s ease;
+            font-family: 'Lora', serif; font-size: 0.95rem; color: #1F3A5F;
+            width: 100%; text-align: center; display: flex;
+            justify-content: center; align-items: center; gap: 8px;
+        }
+        .booking-option-minimal:hover {
+            background: #1F3A5F; color: #FFFFFF; transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(31, 58, 95, 0.25);
+        }
+        .booking-option-minimal.active {
+            background: #16304F; border-color: #16304F; color: #FFFFFF;
+            box-shadow: 0 6px 20px rgba(31, 58, 95, 0.30);
+        }
+        .booking-option-minimal .label-free {
+            font-size: 0.6rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.5px; color: #1F3A5F;
+            background: rgba(31, 58, 95, 0.10); padding: 2px 12px;
+            border-radius: 20px; transition: all 0.3s ease;
+        }
+        .booking-option-minimal:hover .label-free,
+        .booking-option-minimal.active .label-free {
+            color: #FFFFFF; background: rgba(255, 255, 255, 0.20);
+        }
+        .booking-option-minimal .duration {
+            font-size: 0.8rem; color: #1F3A5F; opacity: 0.7;
+            font-weight: 400; transition: all 0.3s ease;
+        }
+        .booking-option-minimal:hover .duration,
+        .booking-option-minimal.active .duration {
+            color: rgba(255, 255, 255, 0.75); opacity: 1;
+        }
+        .booking-embed-wrapper { margin-top: 8px; padding-top: 16px; border-top: 1px solid #E8DFD6; }
+        .cal-inline { width: 100%; min-height: 420px; }
+
+        /* FOOTER */
+        footer {
+            padding: 28px 0; background: #F0EAE4; color: #1F3A5F;
+            font-size: 0.85rem; text-align: center; font-weight: 400;
+        }
+        footer a {
+            color: #1F3A5F; text-decoration: none;
+            border-bottom: 1px solid #DCD0C4; transition: all 0.2s;
+        }
+        footer a:hover { border-bottom-color: #7B8D7C; color: #7B8D7C; }
+        .footer-flex { display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
+
+        /* RESPONSIVE */
+        @media (max-width: 850px) {
+            .about-photo-wrapper { float: none; margin-right: 0; margin-bottom: 24px; text-align: center; display: inline-block; }
+            .about-photo { width: 240px; height: 240px; margin: 0 auto; }
+            .amorgos-image { height: 340px; border-width: 6px; }
+            .service-item { gap: 20px; padding: 26px 0; }
+            .service-content h3 { font-size: 1.1rem; }
+            .service-content p { font-size: 0.93rem; }
+        }
+        @media (max-width: 640px) {
+            header { padding: 14px 18px; }
+            .menu-dropdown { left: 16px; min-width: 180px; top: 64px; }
+            .menu-dropdown a { font-size: 0.85rem; padding: 7px 14px; }
+            .btn-header-book { font-size: 0.65rem; padding: 6px 14px; }
+            .hero { padding: 100px 16px 40px; min-height: 90vh; }
+            .hero-name { font-size: 2.8rem; }
+            .hero-title { font-size: 1rem; }
+            .hero-tagline { font-size: 1.05rem; padding: 0 10px; }
+            .btn-primary { padding: 12px 28px; font-size: 0.95rem; }
+            .btn-secondary { font-size: 0.95rem; }
+            .section-title { font-size: 1.8rem; }
+            .about-photo { width: 200px; height: 200px; }
+            .about-text p { font-size: 0.95rem; }
+            .bio-box { padding: 32px 22px; }
+            .bio-box::before { top: 12px; left: 12px; right: 12px; bottom: 12px; }
+            .credential-box { padding: 26px 22px; }
+            .credential-box-title { font-size: 1.05rem; }
+            .credential-list li { font-size: 0.92rem; }
+            .article-link { font-size: 1.15rem; }
+            .amorgos-image { height: 260px; }
+            .amorgos-caption { font-size: 0.7rem; }
+            .service-item { gap: 14px; padding: 22px 0; }
+            .service-number { font-size: 0.78rem; min-width: 24px; }
+            .service-content h3 { font-size: 1.05rem; }
+            .service-content p { font-size: 0.9rem; }
+            .approach-article { padding: 28px 0; }
+            .approach-article:nth-child(even) { padding-left: 16px; padding-right: 16px; }
+            .approach-article h3 { font-size: 1.15rem; }
+            .approach-article p { font-size: 0.95rem; }
+            .approach-article p::first-letter { font-size: 2.6rem; margin: 4px 8px 0 0; }
+            .approaches-intro { font-size: 0.95rem; }
+            .contact-simple p { font-size: 0.95rem; }
+            .btn-large { padding: 12px 28px; font-size: 0.95rem; }
+            .footer-flex { flex-direction: column; gap: 6px; }
+            .booking-modal { padding: 28px 18px 24px; }
+            .booking-modal-title { font-size: 1.1rem; }
+            .booking-option-minimal { font-size: 0.85rem; padding: 10px 20px; }
+        }
+        @media (max-width: 400px) {
+            .hero-name { font-size: 2.2rem; }
+            .hero-tagline { font-size: 0.95rem; }
+            .btn-primary { padding: 10px 22px; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="header-right">
+            <div class="lang-switch">
+                <button id="lang-el" class="lang-btn active">ΕΛ</button>
+                <span class="lang-divider">|</span>
+                <button id="lang-en" class="lang-btn">EN</button>
+            </div>
+            <button class="btn-header-book" id="headerBookBtn">
+                <span class="lang-el">Κλείσε συνεδρία</span>
+                <span class="lang-en" style="display:none;">Book a session</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <div class="menu-dropdown" id="menuDropdown">
+        <a href="#about" class="lang-el">Βιογραφικό</a>
+        <a href="#about" class="lang-en" style="display:none;">Biography</a>
+        <a href="#services" class="lang-el">Τομείς Υποστήριξης</a>
+        <a href="#services" class="lang-en" style="display:none;">Areas of Support</a>
+        <a href="#approaches" class="lang-el">Προσεγγίσεις</a>
+        <a href="#approaches" class="lang-en" style="display:none;">Approaches</a>
+        <a href="#contact" class="lang-el" style="font-weight:500;">Επικοινωνία</a>
+        <a href="#contact" class="lang-en" style="display:none; font-weight:500;">Contact</a>
+    </div>
+
+    <div class="booking-modal-overlay" id="bookingModal">
+        <div class="booking-modal">
+            <button class="booking-modal-close" id="bookingModalClose">✕</button>
+            <div class="lang-el">
+                <div class="booking-modal-title">Κλείσε συνεδρία</div>
+                <div class="booking-modal-subtitle">Διάλεξε τον τύπο συνεδρίας</div>
+            </div>
+            <div class="lang-en" style="display:none;">
+                <div class="booking-modal-title">Book a session</div>
+                <div class="booking-modal-subtitle">Choose your session type</div>
+            </div>
+            <div class="booking-options-vertical">
+                <button class="booking-option-minimal active" data-event="free-intro" id="freeIntroBtn">
+                    <span class="lang-el">Δωρεάν γνωριμία</span>
+                    <span class="lang-en" style="display:none;">Free consultation</span>
+                    <span class="duration lang-el">15′</span>
+                    <span class="duration lang-en" style="display:none;">15′</span>
+                    <span class="label-free lang-el">δωρεάν</span>
+                    <span class="label-free lang-en" style="display:none;">free</span>
+                </button>
+                <button class="booking-option-minimal" data-event="regular-session" id="regularSessionBtn">
+                    <span class="lang-el">Συνεδρία ψυχοθεραπείας</span>
+                    <span class="lang-en" style="display:none;">Psychotherapy session</span>
+                    <span class="duration lang-el">50′</span>
+                    <span class="duration lang-en" style="display:none;">50′</span>
+                </button>
+            </div>
+            <div class="booking-embed-wrapper" id="bookingEmbedWrapper"></div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="lang-el">
+                <h1 class="hero-name">Αλί Γιασίν, <strong>MSc</strong></h1>
+                <p class="hero-title">Κλινικός Ψυχολόγος – Ψυχοθεραπευτής</p>
+                <p class="hero-tagline">
+                    Ένας χώρος για να <span class="highlight">επανασυνδεθείς</span>
+                    με τον εαυτό σου — με σεβασμό, χωρίς κριτική.
+                </p>
+                <div class="hero-location">Διαδικτυακές συνεδρίες · Αθήνα, Ελλάδα</div>
+                <div class="hero-buttons">
+                    <button class="btn-primary book-btn">Κλείσε συνεδρία</button>
+                    <a href="#about" class="btn-secondary">Βιογραφικό</a>
+                </div>
+            </div>
+            <div class="lang-en" style="display:none;">
+                <h1 class="hero-name">Ali Yassine, <strong>MSc</strong></h1>
+                <p class="hero-title">Clinical Psychologist – Psychotherapist</p>
+                <p class="hero-tagline">
+                    A space to <span class="highlight">reconnect</span>
+                    with yourself — with respect, without judgment.
+                </p>
+                <div class="hero-location">Online sessions · Athens, Greece</div>
+                <div class="hero-buttons">
+                    <button class="btn-primary book-btn">Book a session</button>
+                    <a href="#about" class="btn-secondary">Biography</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title"><span class="lang-el">Βιογραφικό</span><span class="lang-en" style="display:none;">Biography</span></h2>
+            <div class="bio-box">
+                <div class="about-content">
+                    <div class="about-photo-wrapper">
+                        <div class="about-photo">
+                            <img src="ali-yassine.jpg" alt="Αλί Γιασίν" />
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <div class="lang-el">
+                            <p>Ο Αλί Γιασίν γεννήθηκε στον Λίβανο, στην πόλη της Σιδώνας, και από την ηλικία του ενός έτους μεγάλωσε και ζει στην Αθήνα.</p>
+
+                            <span class="bio-divider"></span>
+
+                            <p>Είναι κλινικός ψυχολόγος – ψυχοθεραπευτής και εργάζεται με ενήλικες, εφήβους και παιδιά, προσφέροντας ψυχολογική υποστήριξη σε ένα ασφαλές, συνεργατικό πλαίσιο, με σεβασμό στην προσωπική πορεία του κάθε ατόμου.</p>
+
+                            <span class="bio-divider"></span>
+
+                            <p>Η ακαδημαϊκή του διαδρομή περιλαμβάνει σπουδές Ψυχολογίας στο Πανεπιστήμιο του Στρασβούργου και μεταπτυχιακές σπουδές στην Εφαρμοσμένη Κλινική Ψυχολογία στο University of Lancashire. Ολοκληρώνει το τετραετές Διεθνές Μετεκπαιδευτικό Πρόγραμμα στη Συμβουλευτική και Ψυχοθεραπεία, στο Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΕΚΠΑ) μέσω του Κέντρου Επιμόρφωσης και Διά Βίου Μάθησης (ΚΕΔΙΒΙΜ), σε συνεργασία με το TAOS Institute, το Houston Galveston Institute, το Evanston Family Therapy Center και το Grupo Campos Elíseos, με έμφαση στη Συστημική, Αφηγηματική, Συνεργατική-Διαλογική προσέγγιση, στην Εστιασμένη στη Λύση Θεραπεία και στην Καταξιωτική Προσέγγιση.</p>
+
+                            <span class="bio-divider"></span>
+
+                            <p>Έχει λάβει πιστοποίηση στην Ειδική Αγωγή από το Πανεπιστήμιο Αιγαίου, εκπαίδευση στην Αντιμετώπιση Εξαρτήσεων από το Yale University και εκπαίδευση στην Αναγνώριση Πρώιμων Ενδείξεων Ψύχωσης σε Εφήβους και Νεαρούς Ενήλικες από το Stanford University School of Medicine. Κατέχει άδεια ασκήσεως επαγγέλματος Ψυχολόγου με Αριθμό Άδειας: 400736.</p>
+
+                            <span class="bio-divider"></span>
+
+                            <p>Η επαγγελματική του διαδρομή περιλαμβάνει πολυετή εμπειρία στην παιδική προστασία, όπου εργάζεται συστηματικά με ασυνόδευτους ανήλικους πρόσφυγες (παιδιά και εφήβους) σε δομές φιλοξενίας, παρέχοντας ψυχολογική φροντίδα και ψυχοκοινωνική υποστήριξη μέσα σε ένα διεπιστημονικό πλαίσιο προστασίας του παιδιού.</p>
+
+                            <span class="bio-divider"></span>
+
+                            <p>Παράλληλα, εργάζεται χρόνια με ενήλικες, τόσο σε δια ζώσης όσο και σε διαδικτυακές συνεδρίες, ενώ έχει εργαστεί και σε κέντρα απεξάρτησης, συνοδεύοντας ανθρώπους που αντιμετωπίζουν εξαρτητικές συμπεριφορές.</p>
+                        </div>
+                        <div class="lang-en" style="display:none;">
+                            <p>Ali Yassine was born in Sidon, Lebanon, and raised in Athens, Greece from the age of one, where he has lived ever since.</p>
+
+                            <span class="bio-divider"></span>
+
+                            <p>He is a clinical psychologist and psychotherapist, working with adults, adolescents, and children, offering psychological support in a safe, collaborative environment, with respect for each individual's personal journey.</p>
+
+                            <span class="bio-divider"></span>
+
+                            <p>His academic background includes a Bachelor's degree in Psychology at the University of Strasbourg and a Master's degree in Applied Clinical Psychology at the University of Lancashire. He is completing the four-year International Postgraduate Training Program in Counseling and Psychotherapy at the National and Kapodistrian University of Athens (NKUA) through the Center for Education and Lifelong Learning, in collaboration with the TAOS Institute, the Houston Galveston Institute, the Evanston Family Therapy Center, and the Grupo Campos Elíseos, with an emphasis on Systemic, Narrative, Collaborative-Dialogic approaches, Solution-Focused Therapy, and Appreciative Inquiry.</p>
+
+                            <span class="bio-divider"></span>
+
+                            <p>He has received certification in Special Education from the University of the Aegean, training in Addiction Treatment from Yale University, and training in Identifying Early Signs of Psychosis in Adolescents and Young Adults from Stanford University School of Medicine. He holds a license to practice as a Psychologist with a License No. 400736.</p>
+
+                            <span class="bio-divider"></span>
+
+                            <p>His professional journey includes extensive experience in child protection, working systematically with unaccompanied minor refugees (children and adolescents) in shelter settings, providing mental health care and psychosocial support within a multidisciplinary child protection framework.</p>
+
+                            <span class="bio-divider"></span>
+
+                            <p>In parallel, he has worked for years with adults, both in in-person and online sessions, and has also worked in addiction treatment centers, supporting individuals facing addictive behaviors.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="credentials-section">
+        <div class="container">
+            <div class="credential-box">
+                <h3 class="credential-box-title">
+                    <span class="lang-el">Ακαδημαϊκό Υπόβαθρο &amp; Πιστοποιήσεις</span>
+                    <span class="lang-en" style="display:none;">Academic Background &amp; Certifications</span>
+                </h3>
+                <ul class="credential-list">
+                    <li class="lang-el">Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών — Πιστοποιητικό Εξειδικευμένης Εκπαίδευσης, Τετραετές Διεθνές Μετεκπαιδευτικό Πρόγραμμα στη Συμβουλευτική και Ψυχοθεραπεία. Συστημική, Αφηγηματική και Συνεργατική-Διαλογική προσέγγιση, Εστιασμένη στη Λύση Θεραπεία και Καταξιωτική Προσέγγιση. Σε συνεργασία με τα TAOS Institute, Houston Galveston Institute, Evanston Family Therapy Center (ΗΠΑ) και Grupo Campos Elíseos (Μεξικό), μέσω του Κέντρου Επιμόρφωσης και Διά Βίου Μάθησης (ΚΕΔΙΒΙΜ).</li>
+                    <li class="lang-en" style="display:none;">National and Kapodistrian University of Athens — Certificate of Specialized Training, four-year International Postgraduate Training Program in Counseling and Psychotherapy. Systemic, Narrative and Collaborative-Dialogic Approach, Solution-Focused Therapy and Appreciative Inquiry. Conducted through the Center for Continuing Education and Lifelong Learning (CCE/KEDIVIM), in collaboration with the TAOS Institute, Houston Galveston Institute, Evanston Family Therapy Center (USA) and Grupo Campos Elíseos (Mexico).</li>
+
+                    <li class="lang-el">University of Lancashire — Μεταπτυχιακό Δίπλωμα (MSc), Εφαρμοσμένη Κλινική Ψυχολογία.</li>
+                    <li class="lang-en" style="display:none;">University of Lancashire — Master of Science (MSc), Applied Clinical Psychology.</li>
+
+                    <li class="lang-el">University of Strasbourg — Πτυχίο (BSc), Ψυχολογία.</li>
+                    <li class="lang-en" style="display:none;">University of Strasbourg — Bachelor of Science (BSc), Psychology.</li>
+
+                    <li class="lang-el">Yale University — Θεραπεία Εξαρτήσεων: Κλινικές Δεξιότητες για Επαγγελματίες Υγείας.</li>
+                    <li class="lang-en" style="display:none;">Yale University — Addiction Treatment: Clinical Skills for Healthcare Providers.</li>
+
+                    <li class="lang-el">Πανεπιστήμιο Αιγαίου — Ειδική Αγωγή και Εκπαίδευση.</li>
+                    <li class="lang-en" style="display:none;">University of the Aegean — Special Education and Training.</li>
+
+                    <li class="lang-el">Stanford University School of Medicine — Αναγνώριση Πρώιμων Ενδείξεων Ψύχωσης σε Εφήβους και Νεαρούς Ενήλικες.</li>
+                    <li class="lang-en" style="display:none;">Stanford University School of Medicine — Identifying Early Signs of Psychosis in Adolescents and Young Adults.</li>
+
+                    <li class="lang-el">Άδεια Ασκήσεως Επαγγέλματος Ψυχολόγου — Αριθμός Άδειας: 400736.</li>
+                    <li class="lang-en" style="display:none;">Psychologist Professional License — License No. 400736.</li>
+                </ul>
+            </div>
+
+            <div class="article-link-section">
+                <a href="https://www.homeproject.org/en/on-the-ground/our-voices/ali-s-story/" target="_blank" rel="noopener noreferrer" class="article-link">
+                    <span class="lang-el">Άρθρο: Η ιστορία του @ The Home Project</span>
+                    <span class="lang-en" style="display:none;">Article: His story @ The Home Project</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title"><span class="lang-el">Τομείς ψυχοθεραπευτικής υποστήριξης</span><span class="lang-en" style="display:none;">Areas of psychotherapeutic support</span></h2>
+
+            <div class="services-list">
+                <div class="service-item">
+                    <span class="service-number">01</span>
+                    <div class="service-content">
+                        <h3 class="lang-el">Άγχος &amp; Διαχείριση</h3>
+                        <h3 class="lang-en" style="display:none;">Anxiety &amp; Management</h3>
+                        <p class="lang-el">Μαθαίνουμε μαζί να αφουγκράζεσαι το άγχος σου, να το κατανοείς και να το διαχειρίζεσαι με πρακτικά εργαλεία.</p>
+                        <p class="lang-en" style="display:none;">Together we learn to listen to your anxiety, understand it, and manage it with practical tools.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">02</span>
+                    <div class="service-content">
+                        <h3 class="lang-el">Σχέσεις &amp; Επικοινωνία</h3>
+                        <h3 class="lang-en" style="display:none;">Relationships &amp; Communication</h3>
+                        <p class="lang-el">Βελτιώνουμε την ποιότητα των σχέσεών σου, ξεκινώντας από τη σχέση σου με τον εαυτό σου.</p>
+                        <p class="lang-en" style="display:none;">We improve the quality of your relationships, starting with yourself.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">03</span>
+                    <div class="service-content">
+                        <h3 class="lang-el">Προσωπική Ανάπτυξη &amp; Αυτογνωσία</h3>
+                        <h3 class="lang-en" style="display:none;">Personal Growth &amp; Self-Awareness</h3>
+                        <p class="lang-el">Ανακαλύπτουμε τα εμπόδια που σε κρατούν πίσω και ξεκλειδώνουμε τις δυνατότητές σου.</p>
+                        <p class="lang-en" style="display:none;">We discover the obstacles holding you back and unlock your potential.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">04</span>
+                    <div class="service-content">
+                        <h3 class="lang-el">Εξαρτήσεις &amp; Απεξάρτηση</h3>
+                        <h3 class="lang-en" style="display:none;">Addictions &amp; Recovery</h3>
+                        <p class="lang-el">Δουλεύουμε μαζί για να κατανοήσεις βαθύτερα τις εξαρτητικές συμπεριφορές και να βρεις νέους δρόμους.</p>
+                        <p class="lang-en" style="display:none;">We work together to help you understand addictive behaviors more deeply and find new paths.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">05</span>
+                    <div class="service-content">
+                        <h3 class="lang-el">Διαχείριση Συναισθημάτων</h3>
+                        <h3 class="lang-en" style="display:none;">Emotional Regulation</h3>
+                        <p class="lang-el">Μαθαίνουμε να αναγνωρίζουμε, να ονομάζουμε και να εκφράζουμε τα συναισθήματά μας με τρόπο που μας φροντίζει.</p>
+                        <p class="lang-en" style="display:none;">We learn to recognise, name, and express our emotions in a way that cares for us.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">06</span>
+                    <div class="service-content">
+                        <h3 class="lang-el">Αυτοεκτίμηση &amp; Αυτοπεποίθηση</h3>
+                        <h3 class="lang-en" style="display:none;">Self-Esteem &amp; Confidence</h3>
+                        <p class="lang-el">Χτίζουμε μαζί μια πιο σταθερή σχέση με τον εαυτό σου, αναγνωρίζοντας την αξία και τις δυνατότητές σου.</p>
+                        <p class="lang-en" style="display:none;">Together we build a steadier relationship with yourself, recognising your worth and your strengths.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">07</span>
+                    <div class="service-content">
+                        <h3 class="lang-el">Όρια &amp; Αυτοφροντίδα</h3>
+                        <h3 class="lang-en" style="display:none;">Boundaries &amp; Self-Care</h3>
+                        <p class="lang-el">Μαθαίνουμε να θέτουμε υγιή όρια και να φροντίζουμε τον εαυτό μας χωρίς ενοχές.</p>
+                        <p class="lang-en" style="display:none;">We learn to set healthy boundaries and care for ourselves without guilt.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">08</span>
+                    <div class="service-content">
+                        <h3 class="lang-el">Στρες &amp; Εξουθένωση (Burnout)</h3>
+                        <h3 class="lang-en" style="display:none;">Stress &amp; Burnout</h3>
+                        <p class="lang-el">Αναγνωρίζουμε τα σημάδια της εξουθένωσης και βρίσκουμε τρόπους να ανακτήσουμε ενέργεια και ισορροπία.</p>
+                        <p class="lang-en" style="display:none;">We recognise the signs of burnout and find ways to restore energy and balance.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">09</span>
+                    <div class="service-content">
+                        <h3 class="lang-el">Τραύμα &amp; Ψυχική Ανθεκτικότητα</h3>
+                        <h3 class="lang-en" style="display:none;">Trauma &amp; Resilience</h3>
+                        <p class="lang-el">Δουλεύουμε με σεβασμό στις εμπειρίες που σε σημάδεψαν, ενισχύοντας την ικανότητά σου να αντέχεις και να ανακάμπτεις.</p>
+                        <p class="lang-en" style="display:none;">We work with respect for the experiences that have marked you, strengthening your capacity to endure and recover.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">10</span>
+                    <div class="service-content">
+                        <h3 class="lang-el">Μετάβαση &amp; Αλλαγή Ζωής</h3>
+                        <h3 class="lang-en" style="display:none;">Life Transitions &amp; Change</h3>
+                        <p class="lang-el">Στηρίζουμε τις μεγάλες αλλαγές — μετεγκατάσταση, νέα αρχή, επαγγελματική στροφή, νέα φάση ζωής.</p>
+                        <p class="lang-en" style="display:none;">We support major changes — relocation, a new beginning, a career shift, a new phase of life.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="approaches" class="approaches">
+        <div class="container">
+            <div class="amorgos-wrapper">
+                <div class="amorgos-image"></div>
+                <span class="amorgos-caption lang-el">Αμοργός, 2002</span>
+                <span class="amorgos-caption lang-en" style="display:none;">Amorgos, 2002</span>
+            </div>
+
+            <h2 class="section-title">
+                <span class="lang-el">Ψυχοθεραπευτικές Προσεγγίσεις</span>
+                <span class="lang-en" style="display:none;">Psychotherapeutic Approaches</span>
+            </h2>
+
+            <p class="approaches-intro">
+                <span class="lang-el">Δεν θεραπεύει μία μέθοδος. Θεραπεύει η σχέση — και η σχέση χτίζεται με πολλούς τρόπους: μέσα από τις σχέσεις, τις ιστορίες, τις σκέψεις, τα δυνατά σημεία που φέρνει το κάθε άτομο. Διαφορετικές προσεγγίσεις, ένας σκοπός: η επανασύνδεση με τον εαυτό, με ασφάλεια και σεβασμό.</span>
+                <span class="lang-en" style="display:none;">It is not one method that heals. It is the relationship that heals — and the relationship is built in many ways: through relationships, stories, thoughts, and the strengths that each person brings. Different approaches, one purpose: reconnection with oneself, with safety and respect.</span>
+            </p>
+
+            <article class="approach-article">
+                <h3 class="lang-el">Συστημική Προσέγγιση</h3>
+                <h3 class="lang-en" style="display:none;">Systemic Approach</h3>
+                <p class="lang-el">Συστημική προσέγγιση. Ξεκινά από μια απλή ιδέα: οι άνθρωποι δεν ζουν μόνοι. Ζουν μέσα σε σχέσεις — οικογένεια, φίλους, συνεργάτες, κοινότητες — και αυτές οι σχέσεις επηρεάζουν τον τρόπο που σκέφτονται, νιώθουν και συμπεριφέρονται. Αντί να αναζητά το «πρόβλημα» μόνο μέσα στο άτομο, η συστημική ματιά το τοποθετεί μέσα στο σύστημα των σχέσεων όπου εμφανίζεται. Έτσι, η θεραπεία δεν αλλάζει μόνο το άτομο, αλλά και τον τρόπο που αυτό συνδέεται με τους γύρω του.</p>
+                <p class="lang-en" style="display:none;">Systemic approach begins with a simple idea: people do not live alone. They live within relationships — family, friends, colleagues, communities — and these relationships shape the way they think, feel, and behave. Instead of looking for the "problem" only inside the individual, the systemic lens places it within the system of relationships where it appears. Therapy, then, does not only change the individual, but also the way they connect with others.</p>
+            </article>
+
+            <article class="approach-article">
+                <h3 class="lang-el">Αφηγηματική Προσέγγιση</h3>
+                <h3 class="lang-en" style="display:none;">Narrative Approach</h3>
+                <p class="lang-el">Αφηγηματική προσέγγιση. Βλέπει τη ζωή σαν μια ιστορία. Τα προβλήματα δεν είναι ταυτότητες — δεν «είναι» κάποιος αγχώδης, αλλά «η ιστορία που έχει πει στον εαυτό του» τον κάνει να νιώθει έτσι. Στη θεραπεία, εξερευνώνται ποιες ιστορίες κυριαρχούν, ποιες έχουν παραγκωνιστεί, και πώς μπορεί κανείς να ξαναγράψει την ιστορία του με τρόπο που να τον χωράει καλύτερα. Μια βασική αρχή της προσέγγισης είναι ότι το πρόβλημα είναι το πρόβλημα — το άτομο δεν είναι το πρόβλημα.</p>
+                <p class="lang-en" style="display:none;">Narrative approach. Sees life as a story. Problems are not identities — a person is not "anxious", but "the story they have told themselves about who they are" makes them feel this way. In therapy, we explore which stories dominate, which have been pushed aside, and how one can rewrite their story in a way that fits them better. A core principle of the approach is that the problem is the problem — the person is not the problem.</p>
+            </article>
+
+            <article class="approach-article">
+                <h3 class="lang-el">Συνεργατική-Διαλογική Προσέγγιση</h3>
+                <h3 class="lang-en" style="display:none;">Collaborative-Dialogic Approach</h3>
+                <p class="lang-el">Συνεργατική-διαλογική προσέγγιση. Aντιλαμβάνεται τη θεραπεία ως έναν κοινό διάλογο. Δεν υπάρχει ο «ειδικός» που ξέρει την αλήθεια του άλλου — υπάρχουν δύο άνθρωποι που συνομιλούν, ακούν, και συν-δημιουργούν νέα νοήματα. Η σχέση είναι το θεραπευτικό εργαλείο. Μέσα από τον διάλογο, αναδύονται νέες δυνατότητες, νέες ερμηνείες, νέοι τρόποι να βρίσκεται κανείς στον κόσμο.</p>
+                <p class="lang-en" style="display:none;">Collaborative-dialogic approach. Understands therapy as a shared dialogue. There is no "expert" who knows the other's truth — there are two people conversing, listening, and co-creating new meanings. The relationship itself is the therapeutic tool. Through dialogue, new possibilities, new interpretations, and new ways of being in the world emerge.</p>
+            </article>
+
+            <article class="approach-article">
+                <h3 class="lang-el">Εστιασμένη στη Λύση Θεραπεία</h3>
+                <h3 class="lang-en" style="display:none;">Solution-Focused Therapy</h3>
+                <p class="lang-el">Εστιασμένη στη Λύση Θεραπεία. Προτείνει μια ανατροπή: αντί να αναλύεται γιατί δημιουργήθηκε το πρόβλημα, ρωτά τι λειτουργεί ήδη, έστω και λίγο. Ο θεραπευτής δεν είναι ο «ειδικός» της ζωής του άλλου — είναι συνταξιδιώτης που βοηθά να εντοπιστούν οι μικρές στιγμές όπου το πρόβλημα λείπει, και να ενισχυθούν. Οι λύσεις δεν είναι απαραίτητα μεγάλες αλλαγές· συχνά είναι μικρές, καθημερινές κινήσεις που ανοίγουν χώρο.</p>
+                <p class="lang-en" style="display:none;">Solution-Focused Therapy proposes a shift: instead of analysing why the problem was created, it asks what already works, even a little. The therapist is not the "expert" of the other's life — they are a fellow traveller who helps identify the small moments where the problem is absent, and to strengthen them. Solutions are not necessarily big changes; often they are small, everyday moves that open up space.</p>
+            </article>
+
+            <article class="approach-article">
+                <h3 class="lang-el">Καταξιωτική Προσέγγιση</h3>
+                <h3 class="lang-en" style="display:none;">Appreciative Inquiry</h3>
+                <p class="lang-el">Καταξιωτική Προσέγγιση. Ξεκινά από μια ριζικά διαφορετική ερώτηση: αντί για «τι πάει λάθος;», ρωτά «τι πάει καλά, και πώς μπορεί να ενισχυθεί;». Δεν αγνοεί τις δυσκολίες — αλλά δεν ξεκινά από αυτές. Ξεκινά από τα δυνατά σημεία, τις αξίες, τις στιγμές που το άτομο ή η ομάδα ένιωσε πιο ζωντανή. Μέσα από αυτή τη ματιά, η αλλαγή δεν είναι διόρθωση, αλλά ανάπτυξη αυτού που ήδη υπάρχει.</p>
+                <p class="lang-en" style="display:none;">Appreciative Inquiry begins with a radically different question: instead of "what is wrong?", it asks "what is working, and how can it be strengthened?". It does not ignore difficulties — but it does not start from them. It starts from strengths, values, and the moments when an individual or a group felt most alive. Through this lens, change is not correction, but the growth of what already exists.</p>
+            </article>
+
+            <article class="approach-article">
+                <h3 class="lang-el">Γνωσιακή-Συμπεριφορική Θεραπεία (CBT)</h3>
+                <h3 class="lang-en" style="display:none;">Cognitive-Behavioral Therapy (CBT)</h3>
+                <p class="lang-el">Γνωσιακή-Συμπεριφορική Θεραπεία (CBT). Είναι μία από τις πιο ερευνημένες και διαδεδομένες προσεγγίσεις παγκοσμίως. Η βασική της ιδέα είναι ότι δεν μας επηρεάζουν τόσο τα γεγονότα αυτά καθαυτά, όσο ο τρόπος που τα ερμηνεύουμε. Ανάμεσα στο γεγονός και στο συναίσθημα, παρεμβάλλονται οι σκέψεις — και συχνά αυτές οι σκέψεις είναι αυτόματες, επίμονες, και όχι πάντα ακριβείς. Η CBT βοηθά να αναγνωριστούν αυτές οι σκέψεις, να εξεταστούν με κριτική ματιά, και να αντικατασταθούν με πιο ισορροπημένες. Παράλληλα, δουλεύει με τη συμπεριφορά: μικρά, σταδιακά βήματα έκθεσης σε αυτό που αποφεύγεται, και ενίσχυση νέων δεξιοτήτων. Είναι μια προσέγγιση δομημένη, συνεργατική, και συχνά βραχύχρονη — με στόχο να δώσει στο άτομο εργαλεία που μπορεί να χρησιμοποιήσει και μετά το τέλος της θεραπείας.</p>
+                <p class="lang-en" style="display:none;">Cognitive-Behavioral Therapy (CBT) is one of the most researched and widely practised approaches worldwide. Its core idea is that we are not affected so much by events themselves, as by the way we interpret them. Between an event and an emotion, thoughts intervene — and often these thoughts are automatic, persistent, and not always accurate. CBT helps to recognise these thoughts, examine them critically, and replace them with more balanced ones. At the same time, it works with behaviour: small, gradual steps of exposure to what is avoided, and strengthening of new skills. It is a structured, collaborative, and often short-term approach — aiming to give the person tools they can use long after therapy ends.</p>
+            </article>
+
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title"><span class="lang-el">Επικοινωνία</span><span class="lang-en" style="display:none;">Contact</span></h2>
+            <div class="contact-simple">
+                <p>
+                    <span class="lang-el">Email — </span>
+                    <span class="lang-en" style="display:none;">Email — </span>
+                    <a href="mailto:ali92yassine@gmail.com">ali92yassine@gmail.com</a>
+                </p>
+                <p>
+                    <span class="lang-el">Τηλέφωνο — </span>
+                    <span class="lang-en" style="display:none;">Phone — </span>
+                    <a href="tel:+306949005655">+30 694 9005655</a>
+                </p>
+                <button class="btn-primary btn-large book-btn" style="margin-top: 20px;">
+                    <span class="lang-el">Κλείσε συνεδρία</span>
+                    <span class="lang-en" style="display:none;">Book a session</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-flex">
+            <p>© 2026 Ali Yassine. All Rights Reserved. · <a href="terms.html"><span class="lang-el">Όροι Χρήσης</span><span class="lang-en" style="display:none;">Terms of Use</span></a></p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const CAL_USERNAME = 'aliyassine';
+            const FREE_INTRO_SLUG = 'free-intro';
+            const REGULAR_SESSION_SLUG = 'psychotherapy-session';
+
+            const langEl = document.getElementById('lang-el');
+            const langEn = document.getElementById('lang-en');
+
+            function setLanguage(lang) {
+                document.querySelectorAll('.lang-el').forEach(el => el.style.display = (lang === 'el') ? '' : 'none');
+                document.querySelectorAll('.lang-en').forEach(el => el.style.display = (lang === 'en') ? '' : 'none');
+                document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+                if (lang === 'el') {
+                    langEl.classList.add('active');
+                    document.documentElement.lang = 'el';
+                } else {
+                    langEn.classList.add('active');
+                    document.documentElement.lang = 'en';
+                }
+            }
+
+            langEl.addEventListener('click', e => { e.preventDefault(); setLanguage('el'); });
+            langEn.addEventListener('click', e => { e.preventDefault(); setLanguage('en'); });
+
+            const menuToggle = document.getElementById('menuToggle');
+            const menuDropdown = document.getElementById('menuDropdown');
+            const menuOverlay = document.getElementById('menuOverlay');
+
+            function toggleMenu() {
+                menuToggle.classList.toggle('active');
+                menuDropdown.classList.toggle('open');
+                menuOverlay.classList.toggle('active');
+            }
+            function closeMenu() {
+                menuToggle.classList.remove('active');
+                menuDropdown.classList.remove('open');
+                menuOverlay.classList.remove('active');
+            }
+
+            menuToggle.addEventListener('click', e => { e.preventDefault(); toggleMenu(); });
+            menuOverlay.addEventListener('click', e => { e.preventDefault(); closeMenu(); });
+
+            document.querySelectorAll('.menu-dropdown a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    closeMenu();
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            document.querySelectorAll('a[href^="#"]:not(.menu-dropdown a)').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeMenu();
+            });
+
+            function applyFadeIn(selector) {
+                const els = document.querySelectorAll(selector);
+                if ('IntersectionObserver' in window) {
+                    const observer = new IntersectionObserver(function(entries) {
+                        entries.forEach(function(entry) {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible');
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.12 });
+                    els.forEach(function(el) { observer.observe(el); });
+                } else {
+                    els.forEach(function(el) { el.classList.add('visible'); });
+                }
+            }
+
+            applyFadeIn('.service-item');
+            applyFadeIn('.approach-article');
+
+            const bookingModal = document.getElementById('bookingModal');
+            const bookingModalClose = document.getElementById('bookingModalClose');
+            const bookingEmbedWrapper = document.getElementById('bookingEmbedWrapper');
+            const freeIntroBtn = document.getElementById('freeIntroBtn');
+            const regularSessionBtn = document.getElementById('regularSessionBtn');
+
+            let currentEvent = 'free-intro';
+
+            function setActiveButton(eventType) {
+                document.querySelectorAll('.booking-option-minimal').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.event === eventType);
+                });
+            }
+
+            function openBookingModal(eventType) {
+                currentEvent = eventType || 'free-intro';
+                setActiveButton(currentEvent);
+                bookingModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                bookingEmbedWrapper.innerHTML = '';
+                loadCalEmbed(currentEvent);
+            }
+
+            function closeBookingModal() {
+                bookingModal.classList.remove('active');
+                document.body.style.overflow = '';
+                bookingEmbedWrapper.innerHTML = '';
+            }
+
+            function loadCalEmbed(eventType) {
+                const isFree = eventType === 'free-intro';
+                const slug = isFree ? FREE_INTRO_SLUG : REGULAR_SESSION_SLUG;
+
+                const container = document.createElement('div');
+                container.className = 'cal-inline';
+                container.setAttribute('data-cal-link', CAL_USERNAME + '/' + slug);
+
+                const loadingText = document.createElement('p');
+                loadingText.style.textAlign = 'center';
+                loadingText.style.color = '#1F3A5F';
+                loadingText.style.opacity = '0.6';
+                loadingText.style.padding = '30px';
+                loadingText.style.fontStyle = 'italic';
+
+                const loadingTextEl = document.createElement('span');
+                loadingTextEl.className = 'lang-el';
+                loadingTextEl.textContent = 'Φόρτωση ημερολογίου...';
+                loadingText.appendChild(loadingTextEl);
+
+                const loadingTextEn = document.createElement('span');
+                loadingTextEn.className = 'lang-en';
+                loadingTextEn.style.display = 'none';
+                loadingTextEn.textContent = 'Loading calendar...';
+                loadingText.appendChild(loadingTextEn);
+
+                container.appendChild(loadingText);
+                bookingEmbedWrapper.appendChild(container);
+
+                if (!window.Cal) {
+                    const script = document.createElement('script');
+                    script.src = 'https://app.cal.com/embed.js';
+                    script.async = true;
+                    script.onload = function() {
+                        if (window.Cal) window.Cal('init', container);
+                    };
+                    document.head.appendChild(script);
+                } else {
+                    window.Cal('init', container);
+                }
+            }
+
+            document.querySelectorAll('.book-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openBookingModal('free-intro');
+                });
+            });
+
+            document.getElementById('headerBookBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                openBookingModal('free-intro');
+            });
+
+            freeIntroBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openBookingModal('free-intro');
+            });
+
+            regularSessionBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openBookingModal('regular-session');
+            });
+
+            bookingModalClose.addEventListener('click', closeBookingModal);
+            bookingModal.addEventListener('click', function(e) {
+                if (e.target === this) closeBookingModal();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeBookingModal();
+            });
+
+        })();
+    </script>
+
+</body>
+</html>

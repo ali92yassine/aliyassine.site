@@ -1,0 +1,531 @@
+/* ============================================================
+   ΓΕΝΙΚΑ
+   ============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: #FAF7F2;
+    color: #2E2A28;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+header {
+    padding: 18px 0;
+    background: rgba(250, 247, 242, 0.88);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(232, 226, 218, 0.5);
+}
+
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.logo h1 {
+    font-size: 1.9rem;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    margin: 0;
+    color: #2E2A28;
+}
+
+.badge {
+    background: #E8E2DA;
+    padding: 4px 14px;
+    border-radius: 40px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #4A3F3A;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    text-decoration: none;
+    color: #2E2A28;
+    font-weight: 400;
+    font-size: 0.95rem;
+    padding: 6px 14px;
+    border-radius: 40px;
+    transition: background 0.2s, color 0.2s;
+}
+
+nav a:hover {
+    background: #EDE8E1;
+    color: #8B6B5E;
+}
+
+.btn-soft {
+    background: #EDE8E1;
+    padding: 6px 20px;
+    border-radius: 40px;
+    font-weight: 500;
+}
+
+.btn-soft:hover {
+    background: #8B6B5E !important;
+    color: #fff !important;
+}
+
+/* --- ΔΙΑΚΟΠΤΗΣ ΓΛΩΣΣΑΣ --- */
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    background: #EDE8E1;
+    padding: 4px 12px;
+    border-radius: 40px;
+    margin-right: 8px;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #4A3F3A;
+    border-radius: 20px;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.lang-btn:hover {
+    color: #2E2A28;
+}
+
+.lang-btn.active {
+    background: #8B6B5E;
+    color: #fff;
+    font-weight: 500;
+}
+
+.lang-divider {
+    color: #B5ABA2;
+    font-weight: 300;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+    padding: 60px 0 80px 0;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-greeting {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: #8B6B5E;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.hero-text h2 {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1.15;
+    margin: 10px 0 18px 0;
+}
+
+.highlight {
+    font-weight: 500;
+    color: #8B6B5E;
+    background: linear-gradient(to right, #F0E8E0, #FAF3EC);
+    padding: 0 14px;
+    border-radius: 40px;
+    display: inline-block;
+}
+
+.hero-description {
+    font-size: 1.15rem;
+    color: #4A3F3A;
+    max-width: 500px;
+    margin-bottom: 35px;
+}
+
+.hero-buttons a {
+    display: inline-block;
+    margin-right: 18px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.25s;
+}
+
+.btn-primary {
+    background: #8B6B5E;
+    color: #fff;
+    padding: 12px 38px;
+    border-radius: 60px;
+    box-shadow: 0 6px 18px rgba(139, 107, 94, 0.25);
+}
+
+.btn-primary:hover {
+    background: #70584E;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(139, 107, 94, 0.3);
+}
+
+.btn-secondary {
+    color: #2E2A28;
+    border-bottom: 2px solid #DCD5CE;
+    padding-bottom: 3px;
+}
+
+.btn-secondary:hover {
+    border-bottom-color: #8B6B5E;
+    color: #8B6B5E;
+}
+
+/* --- ΦΩΤΟΓΡΑΦΙΑ & ΑΥΡΑ --- */
+.hero-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-img {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    border-radius: 32px;
+    box-shadow: 0 30px 60px -16px rgba(46, 42, 40, 0.2);
+    position: relative;
+    z-index: 2;
+    object-fit: cover;
+    aspect-ratio: 3/4;
+}
+
+.aura {
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    background: radial-gradient(circle, rgba(139, 107, 94, 0.10) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ============================================================
+   ΕΝΟΤΗΤΕΣ
+   ============================================================ */
+section {
+    padding: 80px 0;
+    border-top: 1px solid #EDE8E1;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 50px;
+    letter-spacing: -0.5px;
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 50px;
+}
+
+.about-text p {
+    margin-bottom: 18px;
+    font-size: 1.05rem;
+    color: #3C3530;
+}
+
+.about-text strong {
+    color: #8B6B5E;
+    font-weight: 600;
+}
+
+.about-credentials {
+    background: #FDFBF9;
+    padding: 30px 28px;
+    border-radius: 24px;
+    border: 1px solid #EDE8E1;
+}
+
+.about-credentials h3 {
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+    color: #2E2A28;
+}
+
+.about-credentials ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-credentials li {
+    padding: 6px 0;
+    border-bottom: 1px solid #F0EAE4;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.about-credentials li:last-child {
+    border-bottom: none;
+}
+
+.about-credentials li strong {
+    color: #8B6B5E;
+    font-weight: 600;
+}
+
+/* ============================================================
+   SERVICES / RESOURCES (ΚΑΡΤΕΣ)
+   ============================================================ */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+}
+
+.card {
+    background: #FDFBF9;
+    padding: 30px 24px;
+    border-radius: 24px;
+    border: 1px solid #EDE8E1;
+    transition: all 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(46, 42, 40, 0.06);
+}
+
+.card h3 {
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    color: #2E2A28;
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: #4A3F3A;
+    line-height: 1.6;
+}
+
+.resource-card .tag {
+    display: inline-block;
+    background: #EDE8E1;
+    padding: 4px 14px;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: #4A3F3A;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+}
+
+.card-link {
+    display: inline-block;
+    margin-top: 16px;
+    color: #8B6B5E;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1.5px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.card-link:hover {
+    border-bottom-color: #8B6B5E;
+}
+
+/* ============================================================
+   CONTACT / BOOKING
+   ============================================================ */
+.contact {
+    background: #F6F1EB;
+    text-align: center;
+    border-top: none;
+}
+
+.contact-center p {
+    font-size: 1.1rem;
+    color: #4A3F3A;
+    max-width: 540px;
+    margin: 0 auto 32px auto;
+}
+
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    color: #2E2A28;
+}
+
+.contact-item a {
+    color: #2E2A28;
+    text-decoration: none;
+    border-bottom: 1px solid #DCD5CE;
+    transition: border-color 0.2s;
+}
+
+.contact-item a:hover {
+    border-bottom-color: #8B6B5E;
+}
+
+.btn-large {
+    font-size: 1.1rem;
+    padding: 16px 56px;
+}
+
+.contact-note {
+    font-size: 0.85rem;
+    color: #8A7D75;
+    margin-top: 24px;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+    padding: 36px 0;
+    background: #F0EBE5;
+    color: #4A3F3A;
+    font-size: 0.9rem;
+}
+
+.footer-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+footer a {
+    color: #4A3F3A;
+    text-decoration: none;
+    border-bottom: 1px solid #DCD5CE;
+    transition: border-color 0.2s;
+}
+
+footer a:hover {
+    border-bottom-color: #8B6B5E;
+}
+
+/* ============================================================
+   RESPONSIVE (ΚΙΝΗΤΑ)
+   ============================================================ */
+@media (max-width: 992px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+    .hero-text h2 {
+        font-size: 2.5rem;
+    }
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .profile-img {
+        max-width: 320px;
+    }
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 640px) {
+    .header-flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .badge {
+        margin-left: 0;
+        display: inline-block;
+        margin-top: 4px;
+    }
+    nav a {
+        font-size: 0.85rem;
+        padding: 4px 10px;
+    }
+    .lang-switch {
+        font-size: 0.75rem;
+        padding: 3px 10px;
+    }
+    .hero-text h2 {
+        font-size: 2rem;
+    }
+    .hero-buttons a {
+        display: block;
+        margin: 10px auto;
+        width: fit-content;
+    }
+    .btn-secondary {
+        border-bottom: none;
+    }
+    .contact-methods {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}
