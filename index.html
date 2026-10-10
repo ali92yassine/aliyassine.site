@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Αλί Γιασίν, MSc | Κλινικός Ψυχολόγος</title>
 
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -119,9 +119,27 @@
             position: relative; overflow: hidden;
         }
         .hero-content { position: relative; z-index: 1; max-width: 680px; }
+
+        /* NEW: logo δίπλα στο όνομα */
+        .hero-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            margin-bottom: 16px;
+        }
+        .hero-logo {
+            width: 90px;
+            height: 90px;
+            flex-shrink: 0;
+        }
+        .hero-header-text {
+            text-align: left;
+        }
+
         .hero-name { font-size: 4rem; font-weight: 600; line-height: 1.1; margin-bottom: 2px; letter-spacing: -0.5px; color: #1F3A5F; }
         .hero-name strong { font-weight: 700; color: #1F3A5F; }
-        .hero-title { font-size: 1.2rem; color: #1F3A5F; font-weight: 400; font-style: italic; margin-bottom: 16px; }
+        .hero-title { font-size: 1.2rem; color: #1F3A5F; font-weight: 400; font-style: italic; margin-bottom: 0; }
         .hero-tagline { font-size: 1.3rem; color: #1F3A5F; max-width: 500px; margin: 0 auto 24px; line-height: 1.6; font-weight: 400; }
         .hero-tagline .highlight { color: #1F3A5F; font-weight: 500; display: inline-block; }
         .hero-location { font-size: 0.9rem; color: #1F3A5F; opacity: 0.75; margin-bottom: 28px; font-style: italic; }
@@ -469,6 +487,9 @@
             .menu-dropdown a { font-size: 0.85rem; padding: 7px 14px; }
             .btn-header-book { font-size: 0.65rem; padding: 6px 14px; }
             .hero { padding: 100px 16px 40px; min-height: 90vh; }
+            .hero-header { flex-direction: column; gap: 12px; text-align: center; margin-bottom: 12px; }
+            .hero-logo { width: 70px; height: 70px; }
+            .hero-header-text { text-align: center; }
             .hero-name { font-size: 2.8rem; }
             .hero-title { font-size: 1rem; }
             .hero-tagline { font-size: 1.05rem; padding: 0 10px; }
@@ -577,8 +598,13 @@
     <section class="hero">
         <div class="hero-content">
             <div class="lang-el">
-                <h1 class="hero-name">Αλί Γιασίν, <strong>MSc</strong></h1>
-                <p class="hero-title">Κλινικός Ψυχολόγος – Ψυχοθεραπευτής</p>
+                <div class="hero-header">
+                    <img src="favicon.svg" alt="Ali Yassine" class="hero-logo">
+                    <div class="hero-header-text">
+                        <h1 class="hero-name">Αλί Γιασίν, <strong>MSc</strong></h1>
+                        <p class="hero-title">Κλινικός Ψυχολόγος – Ψυχοθεραπευτής</p>
+                    </div>
+                </div>
                 <p class="hero-tagline">
                     Ένας χώρος για να <span class="highlight">επανασυνδεθείς</span>
                     με τον εαυτό σου — με σεβασμό, χωρίς κριτική.
@@ -590,8 +616,13 @@
                 </div>
             </div>
             <div class="lang-en" style="display:none;">
-                <h1 class="hero-name">Ali Yassine, <strong>MSc</strong></h1>
-                <p class="hero-title">Clinical Psychologist – Psychotherapist</p>
+                <div class="hero-header">
+                    <img src="favicon.svg" alt="Ali Yassine" class="hero-logo">
+                    <div class="hero-header-text">
+                        <h1 class="hero-name">Ali Yassine, <strong>MSc</strong></h1>
+                        <p class="hero-title">Clinical Psychologist – Psychotherapist</p>
+                    </div>
+                </div>
                 <p class="hero-tagline">
                     A space to <span class="highlight">reconnect</span>
                     with yourself — with respect, without judgment.
@@ -1009,7 +1040,6 @@
                 document.body.style.overflow = '';
             }
 
-            // Direct open of Cal.com modal (no intermediate step)
             function bookSession(eventType) {
                 const isEnglish = document.documentElement.lang === 'en';
                 let slug;
@@ -1020,17 +1050,14 @@
                     slug = isEnglish ? 'psychotherapy-session-en' : 'psychotherapy-session-gr';
                 }
 
-                // Close our modal if it's open
                 closeBookingModal();
 
-                // Open Cal.com popup
                 window.Cal.ns[slug]("modal", {
                     calLink: CAL_USERNAME + '/' + slug,
                     config: { layout: "month_view" }
                 });
             }
 
-            // All "Κλείσε συνεδρία" buttons → open the modal with two choices
             document.querySelectorAll('.book-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1043,7 +1070,6 @@
                 openBookingModal('free-intro');
             });
 
-            // The two choices → open Cal.com directly
             freeIntroBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 bookSession('free-intro');
