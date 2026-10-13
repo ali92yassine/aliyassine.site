@@ -20,17 +20,13 @@
       (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 
       Cal("init", "psychotherapy-session-gr", {origin:"https://app.cal.com"});
-      Cal("init", "free-15-min-intro-session-gr", {origin:"https://app.cal.com"});
       Cal("init", "psychotherapy-session-en", {origin:"https://app.cal.com"});
-      Cal("init", "free-15-min-intro-session", {origin:"https://app.cal.com"});
 
       Cal.config = Cal.config || {};
       Cal.config.forwardQueryParams = true;
 
       Cal.ns["psychotherapy-session-gr"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
-      Cal.ns["free-15-min-intro-session-gr"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
       Cal.ns["psychotherapy-session-en"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
-      Cal.ns["free-15-min-intro-session"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
     </script>
 
     <style>
@@ -56,7 +52,7 @@
             border-bottom: 1px solid rgba(31, 58, 95, 0.12);
             display: flex; justify-content: space-between; align-items: center;
         }
-        .header-left { display: flex; align-items: center; gap: 12px; }
+        .header-left { display: flex; align-items: center; gap: 14px; }
         .menu-toggle {
             background: none; border: none; cursor: pointer; padding: 4px;
             display: flex; flex-direction: column; gap: 5px; transition: all 0.3s ease;
@@ -69,7 +65,18 @@
         .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
         .menu-toggle.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
         .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
-        .header-right { display: flex; align-items: center; gap: 12px; }
+        .header-phone {
+            font-size: 0.8rem;
+            color: #1F3A5F;
+            opacity: 0.9;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            text-decoration: none;
+            transition: opacity 0.2s, color 0.2s;
+        }
+        .header-phone:hover { opacity: 1; color: #7B8D7C; }
+        .header-right { display: flex; align-items: center; gap: 16px; }
         .lang-switch { display: flex; align-items: center; gap: 4px; font-size: 0.7rem; letter-spacing: 0.5px; font-family: 'Lora', serif; }
         .lang-btn {
             background: none; border: none; padding: 2px 6px; cursor: pointer; font-size: 0.7rem;
@@ -114,13 +121,12 @@
         /* HERO */
         .hero {
             min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; padding: 100px 28px 60px;
+            text-align: center; padding: 120px 28px 60px;
             background: linear-gradient(165deg, #F9F5F0 0%, #F2EBE3 100%);
             position: relative; overflow: hidden;
         }
         .hero-content { position: relative; z-index: 1; max-width: 680px; }
 
-        /* NEW: logo δίπλα στο όνομα */
         .hero-header {
             display: flex;
             align-items: center;
@@ -142,7 +148,29 @@
         .hero-title { font-size: 1.2rem; color: #1F3A5F; font-weight: 400; font-style: italic; margin-bottom: 0; }
         .hero-tagline { font-size: 1.3rem; color: #1F3A5F; max-width: 500px; margin: 0 auto 24px; line-height: 1.6; font-weight: 400; }
         .hero-tagline .highlight { color: #1F3A5F; font-weight: 500; display: inline-block; }
-        .hero-location { font-size: 0.9rem; color: #1F3A5F; opacity: 0.75; margin-bottom: 28px; font-style: italic; }
+
+        .hero-contact {
+            font-size: 0.95rem;
+            color: #1F3A5F;
+            margin-bottom: 18px;
+            line-height: 2;
+        }
+        .hero-contact a {
+            color: #1F3A5F;
+            text-decoration: none;
+            border-bottom: 1px solid #DCD0C4;
+            transition: all 0.2s;
+        }
+        .hero-contact a:hover { border-bottom-color: #7B8D7C; color: #7B8D7C; }
+
+        .hero-sessions {
+            font-size: 1.2rem;
+            color: #1F3A5F;
+            font-weight: 500;
+            margin-bottom: 28px;
+            letter-spacing: 0.3px;
+        }
+
         .hero-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
         .btn-primary {
             background: #7B8D7C; color: #fff; padding: 14px 44px; border-radius: 60px;
@@ -152,11 +180,12 @@
         }
         .btn-primary:hover { background: #5E6E5F; transform: translateY(-3px); box-shadow: 0 8px 32px rgba(123, 141, 124, 0.35); }
         .btn-secondary {
-            color: #1F3A5F; text-decoration: none; font-weight: 400;
-            border-bottom: 2px solid #1F3A5F; padding-bottom: 3px;
-            transition: all 0.2s ease; font-family: 'Lora', serif; font-size: 1.05rem;
+            background: none; color: #1F3A5F; font-weight: 400;
+            border: 1.5px solid #1F3A5F; border-radius: 60px; padding: 14px 44px;
+            cursor: pointer; transition: all 0.3s ease; font-family: 'Lora', serif;
+            font-size: 1.05rem;
         }
-        .btn-secondary:hover { border-bottom-color: #7B8D7C; color: #7B8D7C; }
+        .btn-secondary:hover { background: #1F3A5F; color: #fff; transform: translateY(-3px); }
 
         /* SECTIONS */
         section { padding: 90px 0; border-top: 1px solid #EDE4DA; }
@@ -397,68 +426,56 @@
         .contact-simple a:hover { border-bottom-color: #7B8D7C; color: #7B8D7C; }
         .btn-large { font-size: 1.1rem; padding: 16px 52px; }
 
-        /* MODAL */
-        .booking-modal-overlay {
+        /* MODAL — IN-PERSON */
+        .inperson-modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(31, 58, 95, 0.5); z-index: 2000;
             display: none; justify-content: center; align-items: center; padding: 20px;
         }
-        .booking-modal-overlay.active { display: flex; }
-        .booking-modal {
-            background: #F7F2EC; border-radius: 20px; max-width: 600px; width: 100%;
+        .inperson-modal-overlay.active { display: flex; }
+        .inperson-modal {
+            background: #F7F2EC; border-radius: 20px; max-width: 480px; width: 100%;
             max-height: 90vh; overflow-y: auto; padding: 40px 36px 32px;
             position: relative; box-shadow: 0 30px 80px rgba(31, 58, 95, 0.30);
         }
-        .booking-modal-close {
+        .inperson-modal-close {
             position: absolute; top: 14px; right: 18px; background: none; border: none;
             font-size: 1.8rem; cursor: pointer; color: #1F3A5F; opacity: 0.6;
             transition: opacity 0.2s; line-height: 1; font-weight: 300;
         }
-        .booking-modal-close:hover { opacity: 1; }
-        .booking-modal-title {
+        .inperson-modal-close:hover { opacity: 1; }
+        .inperson-modal-title {
             font-weight: 500; font-size: 1.3rem; text-align: center;
             color: #1F3A5F; margin-bottom: 4px; letter-spacing: -0.3px;
         }
-        .booking-modal-subtitle {
+        .inperson-modal-subtitle {
             text-align: center; color: #1F3A5F; opacity: 0.65;
             font-size: 0.9rem; margin-bottom: 28px; font-style: italic;
         }
-        .booking-options-vertical { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
-        .booking-option-minimal {
-            background: #FFFFFF; border: 1.5px solid #1F3A5F; border-radius: 40px;
-            padding: 12px 28px; cursor: pointer; transition: all 0.3s ease;
-            font-family: 'Lora', serif; font-size: 0.95rem; color: #1F3A5F;
-            width: 100%; text-align: center; display: flex;
-            justify-content: center; align-items: center; gap: 8px;
+        .inperson-center {
+            background: #FFFFFF; border-radius: 14px; padding: 24px 26px;
+            border: 1px solid rgba(31, 58, 95, 0.10);
         }
-        .booking-option-minimal:hover {
-            background: #1F3A5F; color: #FFFFFF; transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(31, 58, 95, 0.25);
+        .inperson-center h4 {
+            font-size: 1rem; font-weight: 600; color: #1F3A5F;
+            margin-bottom: 6px; letter-spacing: 0.2px;
         }
-        .booking-option-minimal.active {
-            background: #16304F; border-color: #16304F; color: #FFFFFF;
-            box-shadow: 0 6px 20px rgba(31, 58, 95, 0.30);
+        .inperson-center .center-person {
+            font-size: 0.95rem; color: #1F3A5F; opacity: 0.85;
+            margin-bottom: 12px; font-style: italic;
         }
-        .booking-option-minimal .label-free {
-            font-size: 0.6rem; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.5px; color: #1F3A5F;
-            background: rgba(31, 58, 95, 0.10); padding: 2px 12px;
-            border-radius: 20px; transition: all 0.3s ease;
+        .inperson-center .center-address {
+            font-size: 0.9rem; color: #1F3A5F; opacity: 0.75;
+            line-height: 1.7; margin-bottom: 14px;
         }
-        .booking-option-minimal:hover .label-free,
-        .booking-option-minimal.active .label-free {
-            color: #FFFFFF; background: rgba(255, 255, 255, 0.20);
+        .inperson-center .center-link {
+            display: inline-block; font-size: 0.9rem; color: #1F3A5F;
+            text-decoration: none; border-bottom: 1px solid #DCD0C4;
+            transition: all 0.2s; font-weight: 500;
         }
-        .booking-option-minimal .duration {
-            font-size: 0.8rem; color: #1F3A5F; opacity: 0.7;
-            font-weight: 400; transition: all 0.3s ease;
-        }
-        .booking-option-minimal:hover .duration,
-        .booking-option-minimal.active .duration {
-            color: rgba(255, 255, 255, 0.75); opacity: 1;
-        }
-        .booking-embed-wrapper { margin-top: 8px; padding-top: 16px; border-top: 1px solid #E8DFD6; }
-        .cal-inline { width: 100%; min-height: 420px; }
+        .inperson-center .center-link:hover { border-bottom-color: #7B8D7C; color: #7B8D7C; }
+        .inperson-center .center-link::after { content: ' →'; transition: margin-left 0.3s ease; }
+        .inperson-center .center-link:hover::after { margin-left: 4px; }
 
         /* FOOTER */
         footer {
@@ -470,7 +487,8 @@
             border-bottom: 1px solid #DCD0C4; transition: all 0.2s;
         }
         footer a:hover { border-bottom-color: #7B8D7C; color: #7B8D7C; }
-        .footer-flex { display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .footer-flex { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; }
+        .footer-location { font-size: 0.85rem; color: #1F3A5F; opacity: 0.8; }
 
         /* RESPONSIVE */
         @media (max-width: 850px) {
@@ -483,6 +501,7 @@
         }
         @media (max-width: 640px) {
             header { padding: 14px 18px; }
+            .header-phone { font-size: 0.7rem; }
             .menu-dropdown { left: 16px; min-width: 180px; top: 64px; }
             .menu-dropdown a { font-size: 0.85rem; padding: 7px 14px; }
             .btn-header-book { font-size: 0.65rem; padding: 6px 14px; }
@@ -493,8 +512,10 @@
             .hero-name { font-size: 2.8rem; }
             .hero-title { font-size: 1rem; }
             .hero-tagline { font-size: 1.05rem; padding: 0 10px; }
+            .hero-contact { font-size: 0.85rem; }
+            .hero-sessions { font-size: 1rem; }
             .btn-primary { padding: 12px 28px; font-size: 0.95rem; }
-            .btn-secondary { font-size: 0.95rem; }
+            .btn-secondary { padding: 12px 28px; font-size: 0.95rem; }
             .section-title { font-size: 1.8rem; }
             .about-photo { width: 200px; height: 200px; }
             .about-text p { font-size: 0.95rem; }
@@ -519,14 +540,15 @@
             .contact-simple p { font-size: 0.95rem; }
             .btn-large { padding: 12px 28px; font-size: 0.95rem; }
             .footer-flex { flex-direction: column; gap: 6px; }
-            .booking-modal { padding: 28px 18px 24px; }
-            .booking-modal-title { font-size: 1.1rem; }
-            .booking-option-minimal { font-size: 0.85rem; padding: 10px 20px; }
+            .inperson-modal { padding: 28px 18px 24px; }
+            .inperson-modal-title { font-size: 1.1rem; }
         }
         @media (max-width: 400px) {
             .hero-name { font-size: 2.2rem; }
             .hero-tagline { font-size: 0.95rem; }
             .btn-primary { padding: 10px 22px; font-size: 0.85rem; }
+            .btn-secondary { padding: 10px 22px; font-size: 0.85rem; }
+            .header-phone { font-size: 0.65rem; }
         }
     </style>
 </head>
@@ -537,6 +559,7 @@
             <button class="menu-toggle" id="menuToggle" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
+            <a href="tel:+306949005655" class="header-phone">+30 694 9005655</a>
         </div>
         <div class="header-right">
             <div class="lang-switch">
@@ -564,34 +587,28 @@
         <a href="#contact" class="lang-en" style="display:none; font-weight:500;">Contact</a>
     </div>
 
-    <div class="booking-modal-overlay" id="bookingModal">
-        <div class="booking-modal">
-            <button class="booking-modal-close" id="bookingModalClose">✕</button>
+    <!-- IN-PERSON MODAL -->
+    <div class="inperson-modal-overlay" id="inpersonModal">
+        <div class="inperson-modal">
+            <button class="inperson-modal-close" id="inpersonModalClose">✕</button>
             <div class="lang-el">
-                <div class="booking-modal-title">Κλείσε συνεδρία</div>
-                <div class="booking-modal-subtitle">Διάλεξε τον τύπο συνεδρίας</div>
+                <div class="inperson-modal-title">Δια ζώσης συνεδρίες</div>
+                <div class="inperson-modal-subtitle">Εξωτερικός συνεργάτης</div>
             </div>
             <div class="lang-en" style="display:none;">
-                <div class="booking-modal-title">Book a session</div>
-                <div class="booking-modal-subtitle">Choose your session type</div>
+                <div class="inperson-modal-title">In-person sessions</div>
+                <div class="inperson-modal-subtitle">External collaborator</div>
             </div>
-            <div class="booking-options-vertical">
-                <button class="booking-option-minimal active" data-event="free-intro" id="freeIntroBtn">
-                    <span class="lang-el">Δωρεάν γνωριμία</span>
-                    <span class="lang-en" style="display:none;">Free consultation</span>
-                    <span class="duration lang-el">15′</span>
-                    <span class="duration lang-en" style="display:none;">15′</span>
-                    <span class="label-free lang-el">δωρεάν</span>
-                    <span class="label-free lang-en" style="display:none;">free</span>
-                </button>
-                <button class="booking-option-minimal" data-event="regular-session" id="regularSessionBtn">
-                    <span class="lang-el">Συνεδρία ψυχοθεραπείας</span>
-                    <span class="lang-en" style="display:none;">Psychotherapy session</span>
-                    <span class="duration lang-el">50′</span>
-                    <span class="duration lang-en" style="display:none;">50′</span>
-                </button>
+            <div class="inperson-center">
+                <h4 class="lang-el">Κέντρο Κλινικής Νευροψυχολογίας</h4>
+                <h4 class="lang-en" style="display:none;">Center for Clinical Neuropsychology</h4>
+                <div class="center-person lang-el">Αλεξάνδρα Μαξούρα</div>
+                <div class="center-person lang-en" style="display:none;">Alexandra Maxoura</div>
+                <div class="center-address">
+                    Grigoriou Lampraki 407,<br>Keratsini 187 57
+                </div>
+                <a href="https://maxoura.gr" target="_blank" rel="noopener noreferrer" class="center-link">maxoura.gr</a>
             </div>
-            <div class="booking-embed-wrapper" id="bookingEmbedWrapper"></div>
         </div>
     </div>
 
@@ -609,10 +626,17 @@
                     Ένας χώρος για να <span class="highlight">επανασυνδεθείς</span>
                     με τον εαυτό σου — με σεβασμό, χωρίς κριτική.
                 </p>
-                <div class="hero-location">Διαδικτυακές συνεδρίες · Αθήνα, Ελλάδα</div>
+                <div class="hero-contact">
+                    <a href="mailto:info@aliyassine.gr">info@aliyassine.gr</a>
+                    &nbsp;·&nbsp;
+                    <a href="tel:+306949005655">+30 694 9005655</a>
+                </div>
+                <div class="hero-sessions">
+                    Διαδικτυακές συνεδρίες
+                </div>
                 <div class="hero-buttons">
                     <button class="btn-primary book-btn">Κλείσε συνεδρία</button>
-                    <a href="#about" class="btn-secondary">Βιογραφικό</a>
+                    <button class="btn-secondary" id="inpersonBtn">Δια ζώσης</button>
                 </div>
             </div>
             <div class="lang-en" style="display:none;">
@@ -627,10 +651,17 @@
                     A space to <span class="highlight">reconnect</span>
                     with yourself — with respect, without judgment.
                 </p>
-                <div class="hero-location">Online sessions · Athens, Greece</div>
+                <div class="hero-contact">
+                    <a href="mailto:info@aliyassine.gr">info@aliyassine.gr</a>
+                    &nbsp;·&nbsp;
+                    <a href="tel:+306949005655">+30 694 9005655</a>
+                </div>
+                <div class="hero-sessions">
+                    Online sessions
+                </div>
                 <div class="hero-buttons">
                     <button class="btn-primary book-btn">Book a session</button>
-                    <a href="#about" class="btn-secondary">Biography</a>
+                    <button class="btn-secondary" id="inpersonBtnEn">In person</button>
                 </div>
             </div>
         </div>
@@ -896,7 +927,7 @@
                 <p>
                     <span class="lang-el">Email — </span>
                     <span class="lang-en" style="display:none;">Email — </span>
-                    <a href="mailto:ali92yassine@gmail.com">ali92yassine@gmail.com</a>
+                    <a href="mailto:info@aliyassine.gr">info@aliyassine.gr</a>
                 </p>
                 <p>
                     <span class="lang-el">Τηλέφωνο — </span>
@@ -914,6 +945,7 @@
     <footer>
         <div class="container footer-flex">
             <p>© 2026 Ali Yassine. All Rights Reserved. · <a href="terms.html"><span class="lang-el">Όροι Χρήσης</span><span class="lang-en" style="display:none;">Terms of Use</span></a></p>
+            <p class="footer-location"><span class="lang-el">Αθήνα, Ελλάδα</span><span class="lang-en" style="display:none;">Athens, Greece</span></p>
         </div>
     </footer>
 
@@ -1006,39 +1038,10 @@
             applyFadeIn('.service-item');
             applyFadeIn('.approach-article');
 
-            const bookingModal = document.getElementById('bookingModal');
-            const bookingModalClose = document.getElementById('bookingModalClose');
-            const freeIntroBtn = document.getElementById('freeIntroBtn');
-            const regularSessionBtn = document.getElementById('regularSessionBtn');
-
-            function setActiveButton(eventType) {
-                document.querySelectorAll('.booking-option-minimal').forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.event === eventType);
-                });
-            }
-
-            function openBookingModal(eventType) {
-                setActiveButton(eventType);
-                bookingModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeBookingModal() {
-                bookingModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-
-            function bookSession(eventType) {
+            // BOOKING — direct Cal.com
+            function bookSession() {
                 const isEnglish = document.documentElement.lang === 'en';
-                let slug;
-
-                if (eventType === 'free-intro') {
-                    slug = isEnglish ? 'free-15-min-intro-session' : 'free-15-min-intro-session-gr';
-                } else {
-                    slug = isEnglish ? 'psychotherapy-session-en' : 'psychotherapy-session-gr';
-                }
-
-                closeBookingModal();
+                const slug = isEnglish ? 'psychotherapy-session-en' : 'psychotherapy-session-gr';
 
                 window.Cal.ns[slug]("modal", {
                     calLink: CAL_USERNAME + '/' + slug,
@@ -1049,31 +1052,38 @@
             document.querySelectorAll('.book-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    openBookingModal('free-intro');
+                    bookSession();
                 });
             });
 
             document.getElementById('headerBookBtn').addEventListener('click', function(e) {
                 e.preventDefault();
-                openBookingModal('free-intro');
+                bookSession();
             });
 
-            freeIntroBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                bookSession('free-intro');
-            });
+            // IN-PERSON MODAL
+            const inpersonModal = document.getElementById('inpersonModal');
+            const inpersonModalClose = document.getElementById('inpersonModalClose');
+            const inpersonBtn = document.getElementById('inpersonBtn');
+            const inpersonBtnEn = document.getElementById('inpersonBtnEn');
 
-            regularSessionBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                bookSession('regular-session');
-            });
+            function openInpersonModal() {
+                inpersonModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeInpersonModal() {
+                inpersonModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
 
-            bookingModalClose.addEventListener('click', closeBookingModal);
-            bookingModal.addEventListener('click', function(e) {
-                if (e.target === this) closeBookingModal();
+            inpersonBtn.addEventListener('click', function(e) { e.preventDefault(); openInpersonModal(); });
+            inpersonBtnEn.addEventListener('click', function(e) { e.preventDefault(); openInpersonModal(); });
+            inpersonModalClose.addEventListener('click', closeInpersonModal);
+            inpersonModal.addEventListener('click', function(e) {
+                if (e.target === this) closeInpersonModal();
             });
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closeBookingModal();
+                if (e.key === 'Escape') closeInpersonModal();
             });
 
         })();
