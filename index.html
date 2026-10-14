@@ -445,17 +445,6 @@
         }
         .inperson-modal-close:hover { opacity: 1; }
 
-        .inperson-modal-title {
-            font-weight: 600; font-size: 1.2rem;
-            color: #1F3A5F; margin-bottom: 8px; letter-spacing: 0.2px;
-            text-align: left;
-        }
-        .inperson-modal-sessions {
-            font-weight: 400; font-size: 0.85rem;
-            color: #1F3A5F; opacity: 0.6; margin-bottom: 22px;
-            letter-spacing: 0.4px;
-            text-align: left;
-        }
         .inperson-divider {
             width: 40px; height: 1px; background: #1F3A5F;
             margin: 0 0 26px; opacity: 0.25;
@@ -470,10 +459,6 @@
             margin-bottom: 18px;
             text-align: left;
         }
-        .inperson-center .center-name {
-            font-style: italic; font-size: 1.05rem; color: #1F3A5F;
-            margin-bottom: 6px; line-height: 1.5;
-        }
         .inperson-center .center-address {
             font-style: italic; font-size: 0.95rem; color: #1F3A5F;
             opacity: 0.85; line-height: 1.7; margin-bottom: 18px;
@@ -481,7 +466,7 @@
         .inperson-center .center-link {
             display: inline-block; font-size: 0.9rem; color: #1F3A5F;
             text-decoration: none; border-bottom: 1px solid #DCD0C4;
-            transition: all 0.2s; font-weight: 500; font-style: normal;
+            transition: all 0.2s; font-weight: 500; font-style: italic;
         }
         .inperson-center .center-link:hover { border-bottom-color: #7B8D7C; color: #7B8D7C; }
         .inperson-center .center-link::after { content: ' →'; transition: margin-left 0.3s ease; }
@@ -551,8 +536,6 @@
             .btn-large { padding: 12px 28px; font-size: 0.95rem; }
             .footer-flex { flex-direction: column; gap: 6px; }
             .inperson-modal { padding: 36px 24px 28px; }
-            .inperson-modal-title { font-size: 1.1rem; }
-            .inperson-modal-sessions { font-size: 0.8rem; }
         }
         @media (max-width: 400px) {
             .hero-name { font-size: 2.2rem; }
@@ -604,20 +587,16 @@
             <button class="inperson-modal-close" id="inpersonModalClose">✕</button>
 
             <div class="lang-el">
-                <div class="inperson-modal-title">Δια ζώσης συνεδρίες</div>
-                <div class="inperson-divider"></div>
                 <div class="inperson-center">
-                    <p class="center-intro">Οι δια ζώσης συνεδρίες πραγματοποιούνται στο Κέντρο Κλινικής Νευροψυχολογίας «Αλεξάνδρα Μαξούρα», όπου ο Αλί Γιασίν έχει θέση Επιστημονικού Συνεργάτη.</p>
+                    <p class="center-intro">Επιστημονικός Συνεργάτης του Κέντρου Κλινικής Νευροψυχολογίας «Αλεξάνδρα Μαξούρα», όπου πραγματοποιούνται οι δια ζώσης συνεδρίες.</p>
                     <div class="center-address">Γρηγορίου Λαμπράκη 407,<br>Κερατσίνι 187 57</div>
                     <a href="https://maxoura.gr" target="_blank" rel="noopener noreferrer" class="center-link">maxoura.gr</a>
                 </div>
             </div>
 
             <div class="lang-en" style="display:none;">
-                <div class="inperson-modal-title">In-person sessions</div>
-                <div class="inperson-divider"></div>
                 <div class="inperson-center">
-                    <p class="center-intro">In-person sessions take place at the Center for Clinical Neuropsychology “Alexandra Maxoura,” where Ali Yassine holds the position of Scientific Associate.</p>
+                    <p class="center-intro">Scientific Associate at the Center for Clinical Neuropsychology “Alexandra Maxoura,” where the in-person sessions take place.</p>
                     <div class="center-address">Grigoriou Lampraki 407,<br>Keratsini 187 57</div>
                     <a href="https://maxoura.gr" target="_blank" rel="noopener noreferrer" class="center-link">maxoura.gr</a>
                 </div>
@@ -712,7 +691,7 @@
 
                             <span class="bio-divider"></span>
 
-                            <p>Είναι Επιστημονικός Συνεργάτης του Κέντρου Κλινικής Νευροψυχολογίας «Αλεξάνδρα Μαξούρα». Έχει επίσης μακρά εμπειρία με ενήλικες, τόσο σε δια ζώσης όσο και σε διαδικτυακές συνεδρίες, ενώ έχει εργαστεί και σε κέντρα απεξάρτησης, συνοδεύοντας ανθρώπους που αντιμετωπίζουν εξαρτητικές συμπεριφορές.</p>
+                            <p>Είναι Επιστημονικός Συνεργάτης του Κέντρου Κλινικής Νευροψυχολογίας «Αλεξάνδρα Μαξούρα». Διαθέτει εκτενή εμπειρία με ενήλικες, τόσο σε δια ζώσης όσο και σε διαδικτυακές συνεδρίες, ενώ έχει εργαστεί και σε κέντρα απεξάρτησης, συνοδεύοντας ανθρώπους που αντιμετωπίζουν εξαρτητικές συμπεριφορές.</p>
                         </div>
                         <div class="lang-en" style="display:none;">
                             <p>Ali Yassine was born in Sidon, Lebanon, and raised in Athens, Greece from the age of one, where he has lived ever since.</p>
@@ -735,7 +714,7 @@
 
                             <span class="bio-divider"></span>
 
-                            <p>He is a Scientific Associate at the Center for Clinical Neuropsychology “Alexandra Maxoura.” He also has many years of experience working with adults, both in person and online, and has worked in addiction treatment centers, supporting people facing addictive behaviors.</p>
+                            <p>He is a Scientific Associate at the Center for Clinical Neuropsychology “Alexandra Maxoura.” He brings extensive experience with adults, both in person and online, and has also worked in addiction treatment centers, supporting people facing addictive behaviors.</p>
                         </div>
                     </div>
                 </div>
