@@ -187,6 +187,27 @@
         }
         .btn-secondary:hover { background: #1F3A5F; color: #fff; transform: translateY(-3px); }
 
+        /* HERO JOURNEY LINK */
+        .hero-journey {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #1F3A5F;
+            opacity: 1;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+            letter-spacing: 0.2px;
+            font-weight: 400;
+            z-index: 2;
+        }
+        .hero-journey:hover {
+            border-bottom-color: #7B8D7C;
+            color: #7B8D7C;
+        }
+
         /* SECTIONS */
         section { padding: 90px 0; border-top: 1px solid #EDE4DA; }
         .section-title {
@@ -509,6 +530,7 @@
             .hero-tagline { font-size: 1.05rem; padding: 0 10px; }
             .hero-contact { font-size: 0.85rem; }
             .hero-sessions { font-size: 1rem; }
+            .hero-journey { bottom: 24px; left: 20px; font-size: 1.15rem; }
             .btn-primary { padding: 12px 28px; font-size: 0.95rem; }
             .btn-secondary { padding: 12px 28px; font-size: 0.95rem; }
             .section-title { font-size: 1.8rem; }
@@ -657,6 +679,11 @@
                 </div>
             </div>
         </div>
+
+        <a href="#about" class="hero-journey">
+            <span class="lang-el">Η διαδρομή του</span>
+            <span class="lang-en" style="display:none;">His path</span>
+        </a>
     </section>
 
     <section id="about" class="about">
@@ -865,8 +892,8 @@
         <div class="container">
             <div class="amorgos-wrapper">
                 <div class="amorgos-image"></div>
-                <span class="amorgos-caption lang-el">Αμοργός, 2002</span>
-                <span class="amorgos-caption lang-en" style="display:none;">Amorgos, 2002</span>
+                <span class="amorgos-caption lang-el">Αμοργός, 2022</span>
+                <span class="amorgos-caption lang-en" style="display:none;">Amorgos, 2022</span>
             </div>
 
             <h2 class="section-title">
