@@ -506,7 +506,71 @@
         footer a:hover { border-bottom-color: #7B8D7C; color: #7B8D7C; }
         .footer-flex { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; }
         .footer-location { font-size: 0.85rem; color: #1F3A5F; opacity: 0.8; }
+/* ENTRANCE ANIMATIONS */
+@keyframes softRise {
+    from { opacity: 0; transform: translateY(14px); filter: blur(4px); }
+    to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+@keyframes softFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lineDraw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes lineDrawCenter { to { transform: translateX(-50%) scaleX(1); } }
 
+header { animation: softFade 1s ease both; }
+
+.hero-content .lang-el > *,
+.hero-content .lang-en > * {
+    animation: softRise 1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.hero-content .lang-el > :nth-child(1), .hero-content .lang-en > :nth-child(1) { animation-delay: 0.15s; }
+.hero-content .lang-el > :nth-child(2), .hero-content .lang-en > :nth-child(2) { animation-delay: 0.40s; }
+.hero-content .lang-el > :nth-child(3), .hero-content .lang-en > :nth-child(3) { animation-delay: 0.60s; }
+.hero-content .lang-el > :nth-child(4), .hero-content .lang-en > :nth-child(4) { animation-delay: 0.80s; }
+.hero-content .lang-el > :nth-child(5), .hero-content .lang-en > :nth-child(5) { animation-delay: 1.00s; }
+
+.hero-journey { animation: softFade 1.2s ease 1.4s both; }
+
+/* Τίτλοι ενοτήτων: fade + γραμμή */
+.section-title {
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+    position: relative; padding-bottom: 16px;
+}
+.section-title.visible { opacity: 1; transform: translateY(0); }
+.section-title::after {
+    content: ''; position: absolute; left: 0; bottom: 0;
+    width: 50px; height: 1.5px; background: #7B8D7C;
+    transform: scaleX(0); transform-origin: left;
+}
+.section-title.visible::after { animation: lineDraw 0.9s ease 0.3s forwards; }
+
+.contact .section-title::after { left: 50%; margin: 0; transform: translateX(-50%) scaleX(0); transform-origin: center; }
+.contact .section-title.visible::after { animation: lineDrawCenter 0.9s ease 0.3s forwards; }
+
+/* STONES STACKING */
+@keyframes stoneDrop {
+    0%   { opacity: 0; transform: translateY(-120px); }
+    65%  { opacity: 1; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.hero-logo .stone {
+    opacity: 0;
+    animation: stoneDrop 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+.hero-logo .stone-6 { animation-delay: 0.30s; }
+.hero-logo .stone-5 { animation-delay: 0.60s; }
+.hero-logo .stone-4 { animation-delay: 0.90s; }
+.hero-logo .stone-3 { animation-delay: 1.20s; }
+.hero-logo .stone-2 { animation-delay: 1.50s; }
+.hero-logo .stone-1 { animation-delay: 1.80s; }
+
+/* Για όσους έχουν απενεργοποιήσει τις κινήσεις στο σύστημά τους */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .section-title, .service-item, .approach-article { opacity: 1 !important; transform: none !important; }
+    .section-title::after { transform: scaleX(1); }
+    .contact .section-title::after { transform: translateX(-50%) scaleX(1); }
+    .hero-logo .stone { opacity: 1; }
+}
         /* RESPONSIVE */
         @media (max-width: 850px) {
             .about-photo-wrapper { float: none; margin-right: 0; margin-bottom: 24px; text-align: center; display: inline-block; }
@@ -638,7 +702,14 @@
         <div class="hero-content">
             <div class="lang-el">
                 <div class="hero-header">
-                    <img src="favicon.svg" alt="Ali Yassine" class="hero-logo">
+                    <svg class="hero-logo" viewBox="100 90 1780 2250" role="img" aria-label="Ali Yassine" xmlns="http://www.w3.org/2000/svg">
+    <image class="stone stone-6" href="stones/stone-6.png" x="283" y="1671" width="1456" height="639"/>
+    <image class="stone stone-5" href="stones/stone-5.png" x="510" y="1126" width="1002" height="535"/>
+    <image class="stone stone-4" href="stones/stone-4.png" x="201" y="862" width="1648" height="235"/>
+    <image class="stone stone-3" href="stones/stone-3.png" x="562" y="643" width="307" height="219"/>
+    <image class="stone stone-2" href="stones/stone-2.png" x="129" y="391" width="1356" height="237"/>
+    <image class="stone stone-1" href="stones/stone-1.png" x="928" y="114" width="305" height="282"/>
+</svg>
                     <div class="hero-header-text">
                         <h1 class="hero-name">Αλί Γιασίν, <strong>MSc</strong></h1>
                         <p class="hero-title">Κλινικός Ψυχολόγος – Ψυχοθεραπευτής</p>
@@ -663,7 +734,14 @@
             </div>
             <div class="lang-en" style="display:none;">
                 <div class="hero-header">
-                    <img src="favicon.svg" alt="Ali Yassine" class="hero-logo">
+                    <svg class="hero-logo" viewBox="100 90 1780 2250" role="img" aria-label="Ali Yassine" xmlns="http://www.w3.org/2000/svg">
+    <image class="stone stone-6" href="stones/stone-6.png" x="283" y="1671" width="1456" height="639"/>
+    <image class="stone stone-5" href="stones/stone-5.png" x="510" y="1126" width="1002" height="535"/>
+    <image class="stone stone-4" href="stones/stone-4.png" x="201" y="862" width="1648" height="235"/>
+    <image class="stone stone-3" href="stones/stone-3.png" x="562" y="643" width="307" height="219"/>
+    <image class="stone stone-2" href="stones/stone-2.png" x="129" y="391" width="1356" height="237"/>
+    <image class="stone stone-1" href="stones/stone-1.png" x="928" y="114" width="305" height="282"/>
+</svg>
                     <div class="hero-header-text">
                         <h1 class="hero-name">Ali Yassine, <strong>MSc</strong></h1>
                         <p class="hero-title">Clinical Psychologist – Psychotherapist</p>
@@ -1064,7 +1142,7 @@
 
             applyFadeIn('.service-item');
             applyFadeIn('.approach-article');
-
+            applyFadeIn('.section-title');
             // BOOKING — direct Cal.com
             function bookSession() {
                 const isEnglish = document.documentElement.lang === 'en';
