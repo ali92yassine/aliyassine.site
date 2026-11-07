@@ -1,4 +1,4 @@
-8<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="el">
 <head>
     <meta charset="UTF-8" />
@@ -188,25 +188,43 @@
         }
         .btn-secondary:hover { background: #1F3A5F; color: #fff; transform: translateY(-3px); }
 
-        /* HERO JOURNEY LINK */
+        /* HERO JOURNEY LINK — minimal scroll indicator */
         .hero-journey {
             position: absolute;
             bottom: 40px;
-            left: 40px;
-            font-size: 1.4rem;
-            font-style: italic;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.65rem;
+            font-style: normal;
+            text-transform: uppercase;
+            letter-spacing: 3px;
             color: #1F3A5F;
-            opacity: 1;
+            opacity: 0.65;
             text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: all 0.3s ease;
-            letter-spacing: 0.2px;
-            font-weight: 400;
+            transition: opacity 0.3s ease, color 0.3s ease;
+            font-weight: 500;
+            font-family: 'Lora', serif;
             z-index: 2;
         }
         .hero-journey:hover {
-            border-bottom-color: #7B8D7C;
+            opacity: 1;
             color: #7B8D7C;
+        }
+        .hero-journey::after {
+            content: '';
+            width: 1px;
+            height: 26px;
+            background: currentColor;
+            transform-origin: top;
+            animation: scrollHint 2.2s ease-in-out infinite;
+        }
+        @keyframes scrollHint {
+            0%, 100% { transform: scaleY(1);    opacity: 0.4; }
+            50%      { transform: scaleY(0.35); opacity: 1;   }
         }
 
         /* SECTIONS */
@@ -595,7 +613,8 @@ header { animation: softFade 1s ease both; }
             .hero-tagline { font-size: 1.05rem; padding: 0 10px; }
             .hero-contact { font-size: 0.85rem; }
             .hero-sessions { font-size: 1rem; }
-            .hero-journey { bottom: 24px; left: 20px; font-size: 1.15rem; }
+            .hero-journey { bottom: 28px; font-size: 0.58rem; letter-spacing: 2.5px; gap: 8px; }
+            .hero-journey::after { height: 22px; }
             .btn-primary { padding: 12px 28px; font-size: 0.95rem; }
             .btn-secondary { padding: 12px 28px; font-size: 0.95rem; }
             .section-title { font-size: 1.8rem; }
